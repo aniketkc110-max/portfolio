@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aniket Chaudhari - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --blue: #1a4fd6;
+      --red: #e82c2c;
+      --dark: #0d0d1a;
+      --light: #f5f7ff;
+      --card: #ffffff;
+      --accent: #ff4d4d;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(13,13,26,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--blue), var(--red));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.7); text-decoration: none;
+      font-size: 0.9rem; font-weight: 500; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    /* HERO */
+    #home {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(26,79,214,0.25) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 30%, rgba(232,44,44,0.2) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+    .badge {
+      display: inline-block;
+      background: rgba(26,79,214,0.2);
+      border: 1px solid rgba(26,79,214,0.4);
+      color: #7aa7ff;
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      animation: fadeDown 0.6s ease both;
+    }
+    .avatar {
+      width: 120px; height: 120px;
+      background: linear-gradient(135deg, var(--blue), var(--red));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 2.5rem; font-weight: 800;
+      margin: 0 auto 1.5rem;
+      animation: fadeDown 0.4s ease both;
+      box-shadow: 0 0 40px rgba(26,79,214,0.4);
+    }
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    h1 span { color: var(--red); }
+    .tagline {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.6);
+      margin: 1rem 0 2rem;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .stats {
+      display: flex; gap: 3rem; justify-content: center;
+      margin-top: 2.5rem;
+      animation: fadeUp 0.6s 0.5s ease both;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem; font-weight: 800;
+      color: var(--blue);
+    }
+    .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; }
+
+    /* SECTIONS */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--red); font-weight: 600; margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800; margin-bottom: 3rem;
+    }
+
+    /* ABOUT */
+    #about { background: rgba(255,255,255,0.02); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .about-text p {
+      color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 1rem; font-size: 1rem;
+    }
+    .about-facts { display: flex; flex-direction: column; gap: 1rem; }
+    .fact {
+      display: flex; align-items: center; gap: 1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 1rem 1.2rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .fact:hover { border-color: var(--blue); transform: translateX(6px); }
+    .fact-icon { font-size: 1.4rem; }
+    .fact-text { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .skill-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 2rem;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .skill-card:hover {
+      border-color: var(--blue);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(26,79,214,0.15);
+    }
+    .skill-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .skill-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; }
+    .skill-desc { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 0.4rem; }
+
+    /* ACHIEVEMENTS */
+    #achievements { background: rgba(255,255,255,0.02); }
+    .achievements-list { display: flex; flex-direction: column; gap: 1.2rem; }
+    .achievement {
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 1.5rem 2rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .achievement:hover { border-color: var(--red); transform: translateX(6px); }
+    .ach-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem; font-weight: 800;
+      color: rgba(26,79,214,0.4); line-height: 1;
+      min-width: 2.5rem;
+    }
+    .ach-emoji { font-size: 1.8rem; }
+    .ach-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.3rem; }
+    .ach-desc { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+    .ach-tag {
+      display: inline-block; margin-top: 0.5rem;
+      background: rgba(26,79,214,0.15); border: 1px solid rgba(26,79,214,0.3);
+      color: #7aa7ff; padding: 0.2rem 0.7rem; border-radius: 50px; font-size: 0.75rem;
+    }
+
+    /* CONTACT */
+    .contact-box {
+      max-width: 600px; margin: 0 auto; text-align: center;
+    }
+    .contact-box p { color: rgba(255,255,255,0.6); margin-bottom: 2.5rem; line-height: 1.7; }
+    .contact-cards { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .contact-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px; padding: 1.2rem 2rem;
+      display: flex; align-items: center; gap: 0.8rem;
+      text-decoration: none; color: var(--light);
+      transition: border-color 0.3s, transform 0.3s;
+      font-size: 0.9rem;
+    }
+    .contact-card:hover { border-color: var(--blue); transform: translateY(-4px); }
+    .contact-card .ci { font-size: 1.4rem; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem;
+      color: rgba(255,255,255,0.3); font-size: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .stats { gap: 1.5rem; }
+      section { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">AC</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="avatar">AC</div>
+      <div class="badge">🎓 7th Standard · Amba School for Excellence</div>
+      <h1>Hi, I'm <span>Aniket</span><br/>Chaudhari</h1>
+      <p class="tagline">Student · Learner · Explorer · Future Achiever</p>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">7th</div>
+          <div class="stat-label">Standard</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">13</div>
+          <div class="stat-label">Years Old</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4+</div>
+          <div class="stat-label">Achievements</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Curiosity</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p class="section-label">About Me</p>
+          <h2 class="section-title">A Curious Mind Always Learning</h2>
+          <p>I am <strong>Aniket Chaudhari</strong>, a 13-year-old student in 7th standard at Amba School for Excellence. I love learning new things and I am especially curious about famous personalities and their life stories.</p>
+          <p>I enjoy reading, writing, and doing school projects. My favorite subjects are <strong>Maths and Science</strong> because they help me think better. I believe that hard work and discipline are the keys to success.</p>
+          <p>My goal is to become a successful person in the future and make my parents proud! 🚀</p>
+        </div>
+        <div class="about-facts reveal">
+          <div class="fact"><span class="fact-icon">📚</span><span class="fact-text">Class Topper in 7th Standard</span></div>
+          <div class="fact"><span class="fact-icon">♟️</span><span class="fact-text">Love playing Chess & Cricket</span></div>
+          <div class="fact"><span class="fact-icon">🎵</span><span class="fact-text">Play Sitar (Indian Classical Music)</span></div>
+          <div class="fact"><span class="fact-icon">📖</span><span class="fact-text">Hobby: Reading Books & Comics</span></div>
+          <div class="fact"><span class="fact-icon">🎨</span><span class="fact-text">Favourite Colors: Blue & Red</span></div>
+          <div class="fact"><span class="fact-icon">🎯</span><span class="fact-text">Watching Educational Videos</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <p class="section-label reveal">Skills</p>
+      <h2 class="section-title reveal">Core Competencies</h2>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <div class="skill-icon">🧠</div>
+          <div class="skill-name">Problem Solving</div>
+          <div class="skill-desc">Strong logical thinking from Maths & Science</div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">🤝</div>
+          <div class="skill-name">Leadership</div>
+          <div class="skill-desc">Taking initiative and guiding others</div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">💬</div>
+          <div class="skill-name">Communication</div>
+          <div class="skill-desc">Reading, writing, and expressing ideas clearly</div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">👥</div>
+          <div class="skill-name">Teamwork</div>
+          <div class="skill-desc">Collaborating effectively in school projects</div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">🔍</div>
+          <div class="skill-name">Curiosity</div>
+          <div class="skill-desc">Always exploring and asking questions</div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">💪</div>
+          <div class="skill-name">Discipline</div>
+          <div class="skill-desc">Regular study habits and strong dedication</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="container">
+      <p class="section-label reveal">Achievements</p>
+      <h2 class="section-title reveal">Certificates & Recognition</h2>
+      <div class="achievements-list">
+        <div class="achievement reveal">
+          <div class="ach-num">01</div>
+          <div class="ach-emoji">🥇</div>
+          <div>
+            <div class="ach-title">1st Place – Jawahar Navodaya Vidyalaya Exam</div>
+            <div class="ach-desc">Secured first position in the prestigious JNV entrance exam, demonstrating exceptional academic talent.</div>
+            <span class="ach-tag">Academic</span>
+          </div>
+        </div>
+        <div class="achievement reveal">
+          <div class="ach-num">02</div>
+          <div class="ach-emoji">📜</div>
+          <div>
+            <div class="ach-title">Participant – Common Entrance Test (CET)</div>
+            <div class="ach-desc">Participated in the Common Entrance Test, showcasing competitive academic skills.</div>
+            <span class="ach-tag">Competitive Exam</span>
+          </div>
+        </div>
+        <div class="achievement reveal">
+          <div class="ach-num">03</div>
+          <div class="ach-emoji">🏆</div>
+          <div>
+            <div class="ach-title">1st Place – Vikas Vartul GK IQ Exam</div>
+            <div class="ach-desc">Won first place in the General Knowledge & IQ exam, proving strong awareness and reasoning skills.</div>
+            <span class="ach-tag">GK & IQ</span>
+          </div>
+        </div>
+        <div class="achievement reveal">
+          <div class="ach-num">04</div>
+          <div class="ach-emoji">🎭</div>
+          <div>
+            <div class="ach-title">Participant – School Annual Day</div>
+            <div class="ach-desc">Actively participated in school annual day, showcasing talent and stage confidence.</div>
+            <span class="ach-tag">Extracurricular</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-box">
+        <p class="section-label reveal" style="text-align:center">Contact</p>
+        <h2 class="section-title reveal" style="text-align:center">Let's Connect!</h2>
+        <p class="reveal">I'm always happy to connect, learn, and collaborate. Feel free to reach out to me!</p>
+        <div class="contact-cards reveal">
+          <a class="contact-card" href="mailto:aniketkc110@gmail.com">
+            <span class="ci">📧</span> aniketkc110@gmail.com
+          </a>
+          <a class="contact-card" href="tel:9925641188">
+            <span class="ci">📞</span> 9925641188
+          </a>
+          <a class="contact-card" href="tel:9727825424">
+            <span class="ci">📱</span> 9727825424
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Made with ❤️ by Aniket Chaudhari · 7th Standard · Amba School for Excellence</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Active nav highlight
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section');
+      const links = document.querySelectorAll('.nav-links a');
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+      links.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? '#fff' : '';
+      });
+    });
+  </script>
+</body>
+</html>
