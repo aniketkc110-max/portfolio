@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About · Aniket Chaudhari</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    /* ===== ABOUT PAGE SPECIFIC ===== */
+
+    .page-hero {
+      min-height: 45vh;
+      display: flex; align-items: flex-end;
+      padding-top: var(--nav-h);
+      padding-bottom: 4rem;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 60%, rgba(26,79,214,0.2) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(232,44,44,0.15) 0%, transparent 55%);
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .breadcrumb {
+      font-size: 0.8rem; color: var(--text-dim);
+      margin-bottom: 1rem; position: relative; z-index: 1;
+    }
+    .breadcrumb a { color: var(--primary); }
+    .page-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 800; line-height: 1.0; letter-spacing: -2px;
+      position: relative; z-index: 1;
+    }
+    .page-hero-sub {
+      color: var(--text-muted); margin-top: 0.75rem;
+      font-size: 1.05rem; position: relative; z-index: 1;
+    }
+
+    /* BIO SECTION */
+    .bio-section { padding: 5rem 0; }
+    .bio-grid {
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      gap: 5rem; align-items: start;
+    }
+    .bio-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 2.5rem; text-align: center;
+      position: sticky; top: calc(var(--nav-h) + 1.5rem);
+    }
+    .bio-avatar {
+      width: 140px; height: 140px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), #3b6ef7, var(--red));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 3.5rem; font-weight: 800;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 0 60px rgba(26,79,214,0.35);
+      position: relative;
+    }
+    .bio-avatar::after {
+      content: '';
+      position: absolute; inset: -6px;
+      border-radius: 50%;
+      border: 2px dashed rgba(255,255,255,0.15);
+      animation: rotate 12s linear infinite;
+    }
+    @keyframes rotate { to { transform: rotate(360deg); } }
+    .bio-fullname {
+      font-family: var(--font-display); font-size: 1.5rem; font-weight: 800;
+      margin-bottom: 0.25rem;
+    }
+    .bio-role { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .bio-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 1.5rem; }
+    .bio-stat { background: var(--dark2); padding: 1rem; }
+    .bio-stat-n { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+    .bio-stat-l { font-size: 0.7rem; color: var(--text-dim); }
+    .bio-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center; }
+
+    /* BIO TEXT */
+    .bio-text h2 {
+      font-family: var(--font-display); font-size: 2.2rem; font-weight: 800;
+      letter-spacing: -0.5px; margin-bottom: 1.5rem; line-height: 1.2;
+    }
+    .bio-text p { color: var(--text-muted); line-height: 1.9; margin-bottom: 1.2rem; font-size: 1rem; }
+    .bio-text p strong { color: var(--text); }
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(26,79,214,0.1), rgba(232,44,44,0.06));
+      border: 1px solid rgba(26,79,214,0.2); border-radius: var(--radius);
+      padding: 1.5rem; margin: 2rem 0;
+      font-style: italic; color: var(--text-muted); line-height: 1.7;
+      position: relative;
+    }
+    .highlight-box::before {
+      content: '"'; font-size: 5rem; color: var(--primary); opacity: 0.3;
+      position: absolute; top: -1rem; left: 1rem; line-height: 1;
+      font-family: serif;
+    }
+
+    /* INTERESTS */
+    .interests-section { padding-bottom: 5rem; background: var(--dark2); padding-top: 5rem; }
+    .interests-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .interest-card {
+      padding: 1.5rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      text-align: center;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .interest-card:hover { border-color: var(--border-hover); transform: translateY(-5px); }
+    .interest-emoji { font-size: 2.5rem; margin-bottom: 0.75rem; }
+    .interest-name { font-weight: 600; font-size: 0.95rem; }
+    .interest-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.3rem; }
+
+    /* SKILLS SECTION */
+    .skills-section { padding: 5rem 0; }
+    .skill-bar-item { margin-bottom: 1.5rem; }
+    .skill-bar-top {
+      display: flex; justify-content: space-between;
+      margin-bottom: 0.6rem; font-size: 0.875rem; font-weight: 600;
+    }
+    .skill-bar-pct { color: var(--primary); }
+    .skill-bar-track {
+      height: 8px; background: var(--surface);
+      border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--red));
+      border-radius: 8px;
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .skills-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+
+    /* VALUES */
+    .values-section { padding: 5rem 0; background: var(--dark2); }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .value-card {
+      padding: 2rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .value-card:hover { border-color: var(--border-hover); transform: translateY(-6px); }
+    .value-num {
+      font-family: var(--font-display); font-size: 3rem; font-weight: 800;
+      color: rgba(26,79,214,0.2); line-height: 1; margin-bottom: 1rem;
+    }
+    .value-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .value-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .bio-grid { grid-template-columns: 1fr; }
+      .bio-card { position: static; }
+      .skills-cols { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .values-grid { grid-template-columns: 1fr; }
+      .interests-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Aniket.dev</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html" class="nav-cta btn">Contact Me</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+  <nav class="mobile-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html" class="active">👤 About</a>
+    <a href="projects.html">💡 Projects</a>
+    <a href="contact.html">📩 Contact</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-grid"></div>
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">Home</a> / About</p>
+      <h1 class="page-hero-title">
+        About <span class="gradient-text">Me</span>
+      </h1>
+      <p class="page-hero-sub">13-year-old student with big dreams and bigger curiosity 🚀</p>
+    </div>
+  </section>
+
+  <!-- BIO SECTION -->
+  <section class="bio-section">
+    <div class="container">
+      <div class="bio-grid">
+        <div class="bio-card reveal-left">
+          <div class="bio-avatar">AC</div>
+          <div class="bio-fullname">Aniket Chaudhari</div>
+          <div class="bio-role">Student · Learner · Explorer</div>
+          <div class="bio-stats">
+            <div class="bio-stat">
+              <div class="bio-stat-n">7th</div>
+              <div class="bio-stat-l">Standard</div>
+            </div>
+            <div class="bio-stat">
+              <div class="bio-stat-n">13</div>
+              <div class="bio-stat-l">Years Old</div>
+            </div>
+            <div class="bio-stat">
+              <div class="bio-stat-n">4+</div>
+              <div class="bio-stat-l">Awards</div>
+            </div>
+            <div class="bio-stat">
+              <div class="bio-stat-n">🔥</div>
+              <div class="bio-stat-l">Topper</div>
+            </div>
+          </div>
+          <div class="bio-tags">
+            <span class="tag">♟️ Chess</span>
+            <span class="tag">🎵 Sitar</span>
+            <span class="tag">🏏 Cricket</span>
+            <span class="tag">📖 Reading</span>
+            <span class="tag--red tag">🔢 Maths</span>
+            <span class="tag--red tag">🔬 Science</span>
+          </div>
+        </div>
+
+        <div class="bio-text reveal-right">
+          <span class="section-eyebrow">My Story</span>
+          <h2>A Curious Student<br>With Big <span class="gradient-text">Dreams</span></h2>
+
+          <div class="highlight-box">
+            "I believe that hard work and discipline are the keys to success. With regular study and confidence, I can achieve anything I set my mind to."
+          </div>
+
+          <p>My name is <strong>Aniket Chaudhari</strong>. I am 13 years old and I study in <strong>7th Standard at Amba School for Excellence</strong>. I am proud to be a class topper and I love learning new things every single day.</p>
+
+          <p>I am especially curious about <strong>famous personalities and their life stories</strong>. I love reading about how great people achieved success through hard work, dedication, and perseverance. Their stories inspire me to work harder every day.</p>
+
+          <p>My favorite subjects are <strong>Maths and Science</strong> because they teach me how to think logically and explore the world around me. In my free time, I enjoy reading books and comics, watching educational videos, playing chess and cricket, and playing the <strong>Sitar</strong> — a beautiful Indian classical instrument.</p>
+
+          <p>I am a <strong>positive, respectful, and hardworking</strong> student. I respect my teachers and elders. My goal is to become a successful person in the future and make my parents proud. I know that with regular study and confidence, I can achieve anything! 🌟</p>
+
+          <div style="margin-top:2rem;">
+            <a href="contact.html" class="btn btn-primary">Say Hello 👋</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERESTS -->
+  <section class="interests-section">
+    <div class="container">
+      <span class="section-eyebrow reveal">My World</span>
+      <h2 class="section-title reveal">Interests &amp; Hobbies</h2>
+      <div class="interests-grid">
+        <div class="interest-card reveal delay-1">
+          <div class="interest-emoji">♟️</div>
+          <div class="interest-name">Chess</div>
+          <div class="interest-desc">Strategic thinking and mental sharpness</div>
+        </div>
+        <div class="interest-card reveal delay-2">
+          <div class="interest-emoji">🎵</div>
+          <div class="interest-name">Sitar</div>
+          <div class="interest-desc">Indian classical music — pure soul</div>
+        </div>
+        <div class="interest-card reveal delay-3">
+          <div class="interest-emoji">🏏</div>
+          <div class="interest-name">Cricket</div>
+          <div class="interest-desc">Team sport and outdoor fun</div>
+        </div>
+        <div class="interest-card reveal delay-4">
+          <div class="interest-emoji">📚</div>
+          <div class="interest-name">Reading</div>
+          <div class="interest-desc">Books, comics & knowledge</div>
+        </div>
+        <div class="interest-card reveal delay-5">
+          <div class="interest-emoji">🔬</div>
+          <div class="interest-name">Science</div>
+          <div class="interest-desc">Exploring how the world works</div>
+        </div>
+        <div class="interest-card reveal delay-6">
+          <div class="interest-emoji">📺</div>
+          <div class="interest-name">Educational Videos</div>
+          <div class="interest-desc">Learning through YouTube & documentaries</div>
+        </div>
+        <div class="interest-card reveal delay-1">
+          <div class="interest-emoji">✍️</div>
+          <div class="interest-name">Writing</div>
+          <div class="interest-desc">Expressing thoughts through words</div>
+        </div>
+        <div class="interest-card reveal delay-2">
+          <div class="interest-emoji">🎯</div>
+          <div class="interest-name">School Projects</div>
+          <div class="interest-desc">Creative and research-based work</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills-section" id="skills">
+    <div class="container">
+      <span class="section-eyebrow reveal">Expertise</span>
+      <h2 class="section-title reveal">Skills &amp; Competencies</h2>
+      <div class="skills-cols">
+        <div class="reveal delay-1">
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span>Mathematics</span><span class="skill-bar-pct">95%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span>Science</span><span class="skill-bar-pct">90%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span>Reading & Writing</span><span class="skill-bar-pct">88%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span>General Knowledge</span><span class="skill-bar-pct">92%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92%"></div></div>
+          </div>
+        </div>
+        <div class="reveal delay-2">
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span>Leadership</span><span class="skill-bar-pct">85%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span>Chess Strategy</span><span class="skill-bar-pct">80%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span>Communication</span><span class="skill-bar-pct">87%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="87%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span>Teamwork</span><span class="skill-bar-pct">90%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="values-section">
+    <div class="container">
+      <span class="section-eyebrow reveal">My Philosophy</span>
+      <h2 class="section-title reveal">What I Believe In</h2>
+      <div class="values-grid">
+        <div class="value-card reveal delay-1">
+          <div class="value-num">01</div>
+          <div class="value-title">Hard Work 💪</div>
+          <div class="value-desc">I believe consistent effort beats talent alone. Every day I push myself to study harder and learn more.</div>
+        </div>
+        <div class="value-card reveal delay-2">
+          <div class="value-num">02</div>
+          <div class="value-title">Discipline 🎯</div>
+          <div class="value-desc">A regular study schedule and disciplined approach helps me stay at the top of my class consistently.</div>
+        </div>
+        <div class="value-card reveal delay-3">
+          <div class="value-num">03</div>
+          <div class="value-title">Curiosity 🔍</div>
+          <div class="value-desc">Asking "why?" and "how?" about everything. From science experiments to great people's life stories.</div>
+        </div>
+        <div class="value-card reveal delay-4">
+          <div class="value-num">04</div>
+          <div class="value-title">Respect 🙏</div>
+          <div class="value-desc">I deeply respect my teachers, parents, and elders. Their wisdom guides me every day.</div>
+        </div>
+        <div class="value-card reveal delay-5">
+          <div class="value-num">05</div>
+          <div class="value-title">Positivity 🌟</div>
+          <div class="value-desc">A positive mindset helps me face challenges with confidence and keep growing even when things get tough.</div>
+        </div>
+        <div class="value-card reveal delay-6">
+          <div class="value-num">06</div>
+          <div class="value-title">Family First 👨‍👩‍👦</div>
+          <div class="value-desc">My biggest motivation is to make my parents proud. Everything I do, I do for my family.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">Aniket.dev</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-copy">Made with ❤️ by Aniket Chaudhari · 7th Standard · Amba School for Excellence · 2025</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
