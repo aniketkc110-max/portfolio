@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Contact | Aniket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <nav>
     <h2>Aniket</h2>
-    <div>
+    <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="project.html">Projects</a>
@@ -19,10 +21,10 @@
 <section class="content">
     <h1>Contact Me</h1>
 
-    <form action="https://formsubmit.co/aniketkc110@gmail.com" method="POST" class="contact-form">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+    <form class="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Your Message" required></textarea>
         <button type="submit">Send Message</button>
     </form>
 
