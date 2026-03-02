@@ -1,26 +1,37 @@
-body {
+/* RESET */
+* {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    color: white;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* BODY */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0f0f0f;
+    color: #ffffff;
+}
+
+/* NAVBAR */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px;
-    background: rgba(0,0,0,0.3);
+    padding: 20px 80px;
+    background: #111;
+    border-bottom: 1px solid #222;
 }
 
 nav h2 {
+    font-size: 24px;
     color: #00f2fe;
 }
 
 nav a {
-    color: white;
-    margin-left: 20px;
     text-decoration: none;
+    color: white;
+    margin-left: 30px;
+    font-weight: 500;
     transition: 0.3s;
 }
 
@@ -28,114 +39,153 @@ nav a:hover {
     color: #00f2fe;
 }
 
+/* HERO SECTION */
 .hero {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    margin-top: 150px;
+
+    background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
 }
 
 .hero h1 {
-    font-size: 40px;
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.hero span {
+    color: #00f2fe;
 }
 
 .hero p {
     font-size: 20px;
-    margin: 10px 0;
+    color: #aaa;
+    margin-bottom: 30px;
 }
 
+/* BUTTON */
 .btn {
-    padding: 10px 20px;
-    background: #00f2fe;
+    padding: 12px 28px;
+    background: linear-gradient(90deg, #00f2fe, #4facfe);
+    border: none;
+    border-radius: 30px;
     color: black;
-    text-decoration: none;
-    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
     transition: 0.3s;
+    text-decoration: none;
 }
 
 .btn:hover {
-    background: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #00f2fe;
 }
 
+/* CONTENT SECTION */
 .content {
-    padding: 60px;
+    padding: 80px;
     text-align: center;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
+/* CARD DESIGN */
+.card {
+    background: #151515;
+    padding: 30px;
+    margin: 30px auto;
+    width: 60%;
+    border-radius: 20px;
+    border: 1px solid #222;
+    transition: 0.3s;
 }
 
-ul li {
-    margin: 15px 0;
-    font-size: 18px;
-}
-.contact-hero {
-    text-align: center;
-    padding: 60px 20px 20px;
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px #00f2fe;
 }
 
+/* CONTACT SECTION */
 .contact-main {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
     flex-wrap: wrap;
     gap: 40px;
-    padding: 40px;
-}
-
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    padding: 50px;
 }
 
 .info-card {
-    background: rgba(255,255,255,0.1);
-    padding: 20px;
-    border-radius: 15px;
+    background: #151515;
+    padding: 25px;
     width: 250px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    border-radius: 15px;
+    border: 1px solid #222;
     transition: 0.3s;
 }
 
 .info-card:hover {
-    transform: translateY(-8px);
+    box-shadow: 0 0 20px #00f2fe;
 }
 
-.contact-form h2 {
-    text-align: center;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
+/* FORM */
+.contact-form {
+    background: #151515;
+    padding: 35px;
+    width: 350px;
+    border-radius: 20px;
+    border: 1px solid #222;
 }
 
 input, textarea {
-    margin: 10px 0;
+    width: 100%;
+    margin: 12px 0;
     padding: 12px;
     border-radius: 8px;
-    border: none;
+    border: 1px solid #333;
+    background: #0f0f0f;
+    color: white;
 }
 
 button {
+    width: 100%;
     padding: 12px;
     border-radius: 8px;
     border: none;
-    background: #00f2fe;
+    background: linear-gradient(90deg, #00f2fe, #4facfe);
+    color: black;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
 }
 
 button:hover {
-    background: white;
+    box-shadow: 0 0 15px #00f2fe;
 }
 
+/* FOOTER */
 footer {
     text-align: center;
     padding: 20px;
-    background: rgba(0,0,0,0.3);
-    margin-top: 40px;
+    background: #111;
+    border-top: 1px solid #222;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .card {
+        width: 90%;
+    }
+
+    .contact-form {
+        width: 90%;
+    }
 }
