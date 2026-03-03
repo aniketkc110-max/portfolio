@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aniket Chaudhari | About</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">AC</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrap">
+
+    <!-- PAGE HERO -->
+    <div style="background: radial-gradient(ellipse at 50% 0%, rgba(26,86,219,0.2) 0%, transparent 60%), var(--dark); padding: 70px 24px 50px; text-align:center; border-bottom: 1px solid rgba(26,86,219,0.15);">
+      <div class="avatar" style="width:110px;height:110px;font-size:2.8rem;">A</div>
+      <h1 style="font-family:'Righteous',cursive; font-size:clamp(2rem,5vw,3.5rem);" class="grad-text">About Me</h1>
+      <p style="margin-top:10px; font-size:1rem;">Get to know Aniket Chaudhari</p>
+    </div>
+
+    <!-- BIO -->
+    <section class="section">
+      <p class="section-label">Personal Info</p>
+      <h2 class="section-title">Who Am I?</h2>
+      <div class="grid-3">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.2rem; margin-bottom:12px;">🎒</div>
+          <h3 style="font-size:1rem; margin-bottom:6px;">7th Standard</h3>
+          <p style="font-size:0.88rem;">Currently studying in 7th Standard, always eager to learn more.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.2rem; margin-bottom:12px;">🎂</div>
+          <h3 style="font-size:1rem; margin-bottom:6px;">13 Years Old</h3>
+          <p style="font-size:0.88rem;">Young, energetic and full of passion for learning and growing.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.2rem; margin-bottom:12px;">🏆</div>
+          <h3 style="font-size:1rem; margin-bottom:6px;">Class Topper</h3>
+          <p style="font-size:0.88rem;">Consistent hard work has made me topper of my class.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.2rem; margin-bottom:12px;">📐</div>
+          <h3 style="font-size:1rem; margin-bottom:6px;">Maths & Science</h3>
+          <p style="font-size:0.88rem;">My favourite subjects — I love solving problems and experiments.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.2rem; margin-bottom:12px;">🏫</div>
+          <h3 style="font-size:1rem; margin-bottom:6px;">School Lover</h3>
+          <p style="font-size:0.88rem;">I genuinely love going to school and learning new things daily.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.2rem; margin-bottom:12px;">🎨</div>
+          <h3 style="font-size:1rem; margin-bottom:6px;">Favourite Colours</h3>
+          <p style="font-size:0.88rem;">Blue and Red — my favourite colours that reflect energy and calm.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- HOBBIES -->
+    <section class="section">
+      <p class="section-label">Free Time</p>
+      <h2 class="section-title">Hobbies & Interests</h2>
+      <div class="grid-2">
+        <div class="card" style="display:flex; align-items:flex-start; gap:16px;">
+          <div style="font-size:2rem; flex-shrink:0;">♟</div>
+          <div>
+            <h3 style="font-size:1rem; margin-bottom:6px;">Chess</h3>
+            <p style="font-size:0.88rem;">I love playing chess — it sharpens my thinking and strategy. The game teaches me patience and planning ahead.</p>
+          </div>
+        </div>
+        <div class="card red" style="display:flex; align-items:flex-start; gap:16px;">
+          <div style="font-size:2rem; flex-shrink:0;">🏏</div>
+          <div>
+            <h3 style="font-size:1rem; margin-bottom:6px;">Cricket</h3>
+            <p style="font-size:0.88rem;">Cricket is my favourite outdoor sport. I enjoy playing with friends and watching matches with excitement.</p>
+          </div>
+        </div>
+        <div class="card" style="display:flex; align-items:flex-start; gap:16px;">
+          <div style="font-size:2rem; flex-shrink:0;">🎵</div>
+          <div>
+            <h3 style="font-size:1rem; margin-bottom:6px;">Sitar</h3>
+            <p style="font-size:0.88rem;">I play the sitar, a beautiful Indian classical instrument. Music helps me stay focused and feel peaceful.</p>
+          </div>
+        </div>
+        <div class="card red" style="display:flex; align-items:flex-start; gap:16px;">
+          <div style="font-size:2rem; flex-shrink:0;">📚</div>
+          <div>
+            <h3 style="font-size:1rem; margin-bottom:6px;">Reading Books & Comics</h3>
+            <p style="font-size:0.88rem;">Reading is my favourite hobby. Books expand my knowledge and comics make me laugh and imagine!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SKILLS -->
+    <section class="section">
+      <p class="section-label">Expertise</p>
+      <h2 class="section-title">Skills</h2>
+      <div style="max-width:600px;">
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>🗣️ Communication</span><span>90%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%;"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>👑 Leadership</span><span>85%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%;"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>🧩 Problem Solving</span><span>92%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:92%;"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>🤝 Teamwork</span><span>88%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%;"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ACHIEVEMENTS -->
+    <section class="section" style="padding-bottom:100px;">
+      <p class="section-label">Awards</p>
+      <h2 class="section-title">Achievements & Certificates</h2>
+
+      <div class="cert-card">
+        <div class="cert-icon">🥇</div>
+        <div>
+          <h3>1st Place — Jawahar Navodaya Vidyalaya Exam</h3>
+          <p>Secured first position in the prestigious JNV entrance examination. A proud achievement reflecting hard work and dedication.</p>
+        </div>
+      </div>
+      <div class="cert-card red">
+        <div class="cert-icon red">📜</div>
+        <div>
+          <h3>Participant — Common Entrance Test (CET)</h3>
+          <p>Successfully appeared in the Common Entrance Test, gaining valuable competitive exam experience.</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🥇</div>
+        <div>
+          <h3>1st Place — Vikas Vartul GK/IQ Exam</h3>
+          <p>Secured first position in the Vikas Vartul General Knowledge & IQ exam, demonstrating strong knowledge and quick thinking.</p>
+        </div>
+      </div>
+      <div class="cert-card red">
+        <div class="cert-icon red">🎭</div>
+        <div>
+          <h3>Participant — School Annual Day</h3>
+          <p>Actively participated in the school's Annual Day celebration, showcasing talent and school spirit.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    Made with <span>❤️</span> by Aniket Chaudhari &nbsp;·&nbsp; Student · Learner · Developer
+  </footer>
+
+</body>
+</html>
