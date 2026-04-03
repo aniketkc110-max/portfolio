@@ -3,525 +3,913 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Aniket Chaudhari - 7th Standard Student Portfolio | Amba School for Excellence"/>
-  <title>Aniket Chaudhari · Portfolio</title>
-  <link rel="stylesheet" href="css/style.css"/>
+  <title>Aniket Chaudhari · Galaxy Ultra Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet"/>
   <style>
-    /* ===== HOME PAGE SPECIFIC ===== */
+    :root {
+      --galaxy1: #0a001f;
+      --galaxy2: #050015;
+      --neon-blue: #00f0ff;
+      --neon-purple: #bf00ff;
+      --neon-pink: #ff00aa;
+      --neon-gold: #ffd700;
+      --neon-green: #00ff88;
+      --red: #ff2244;
+      --text: #e8f4ff;
+      --text-dim: rgba(232,244,255,0.5);
+    }
 
-    /* HERO */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background: var(--galaxy2);
+      color: var(--text);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ============ ULTRA CURSOR ============ */
+    #cursor-outer {
+      position: fixed; z-index: 99999; pointer-events: none;
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 2px solid var(--neon-blue);
+      transform: translate(-50%,-50%);
+      transition: width .3s, height .3s, border-color .3s;
+      mix-blend-mode: screen;
+      box-shadow: 0 0 15px var(--neon-blue), inset 0 0 10px rgba(0,240,255,0.1);
+    }
+    #cursor-inner {
+      position: fixed; z-index: 99999; pointer-events: none;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--neon-blue);
+      transform: translate(-50%,-50%);
+      box-shadow: 0 0 20px var(--neon-blue);
+    }
+
+    /* ============ SCROLLBAR ============ */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--galaxy2); }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(var(--neon-blue), var(--neon-purple)); border-radius: 2px; }
+
+    /* ============ GALAXY CANVAS ============ */
+    #galaxy-canvas {
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ============ NEBULA LAYERS ============ */
+    .nebula {
+      position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+      filter: blur(80px);
+      animation: nebulaFloat 20s ease-in-out infinite;
+    }
+    .nebula-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(191,0,255,0.15), transparent 70%); top: -200px; left: -200px; animation-delay: 0s; }
+    .nebula-2 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,240,255,0.12), transparent 70%); top: 30%; right: -150px; animation-delay: -7s; }
+    .nebula-3 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,0,170,0.1), transparent 70%); bottom: 10%; left: 20%; animation-delay: -14s; }
+    .nebula-4 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,210,0,0.08), transparent 70%); top: 60%; right: 30%; animation-delay: -5s; }
+
+    @keyframes nebulaFloat {
+      0%,100% { transform: translate(0,0) scale(1); }
+      33% { transform: translate(30px,-20px) scale(1.05); }
+      66% { transform: translate(-20px,30px) scale(0.95); }
+    }
+
+    /* ============ NAV ============ */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(5,0,21,0.7);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,240,255,0.15);
+    }
+    nav::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-purple), var(--neon-pink), transparent);
+    }
+    .nav-logo {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.4rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      text-shadow: none;
+      letter-spacing: 2px;
+    }
+    .nav-links { display: flex; gap: 0.3rem; }
+    .nav-links a {
+      padding: 0.4rem 1rem;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.7rem; letter-spacing: 2px;
+      color: var(--text-dim);
+      border: 1px solid transparent;
+      border-radius: 4px;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--neon-blue);
+      border-color: rgba(0,240,255,0.3);
+      background: rgba(0,240,255,0.05);
+      text-shadow: 0 0 10px var(--neon-blue);
+    }
+
+    /* ============ HERO ============ */
     .hero {
       min-height: 100vh;
       display: flex; align-items: center;
-      padding-top: var(--nav-h);
+      padding: 6rem 0 4rem;
       position: relative; overflow: hidden;
     }
-    #particles {
-      position: absolute; inset: 0; z-index: 0;
-      pointer-events: none;
+    .page { position: relative; z-index: 1; }
+
+    /* HOLOGRAM RING */
+    .holo-ring-wrap {
+      position: relative; display: flex;
+      align-items: center; justify-content: center;
+      width: 320px; height: 320px; flex-shrink: 0;
     }
-    .hero-glow-1 {
-      position: absolute; top: 10%; left: -10%;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(26,79,214,0.18) 0%, transparent 70%);
-      pointer-events: none; z-index: 0;
-      animation: pulse 6s ease-in-out infinite;
+    .holo-ring {
+      position: absolute; border-radius: 50%; border: 2px solid transparent;
+      animation: ringRotate linear infinite;
     }
-    .hero-glow-2 {
-      position: absolute; bottom: 5%; right: -5%;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(232,44,44,0.14) 0%, transparent 70%);
-      pointer-events: none; z-index: 0;
-      animation: pulse 8s ease-in-out infinite reverse;
+    .holo-ring-1 { width: 300px; height: 300px; border-color: rgba(0,240,255,0.6); border-top-color: transparent; border-right-color: transparent; animation-duration: 3s; box-shadow: 0 0 20px rgba(0,240,255,0.3); }
+    .holo-ring-2 { width: 260px; height: 260px; border-color: rgba(191,0,255,0.6); border-bottom-color: transparent; border-left-color: transparent; animation-duration: 4s; animation-direction: reverse; box-shadow: 0 0 20px rgba(191,0,255,0.3); }
+    .holo-ring-3 { width: 220px; height: 220px; border-color: rgba(255,0,170,0.5); border-top-color: transparent; animation-duration: 2s; box-shadow: 0 0 15px rgba(255,0,170,0.2); }
+    @keyframes ringRotate { to { transform: rotate(360deg); } }
+
+    .avatar-core {
+      width: 170px; height: 170px; border-radius: 50%;
+      background: linear-gradient(135deg, #0a001f, #1a0040, #0d0030);
+      border: 2px solid rgba(0,240,255,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Orbitron', monospace;
+      font-size: 3rem; font-weight: 900;
+      position: relative; z-index: 2;
+      box-shadow: 0 0 40px rgba(0,240,255,0.3), 0 0 80px rgba(191,0,255,0.2), inset 0 0 40px rgba(0,240,255,0.05);
+      color: var(--neon-blue);
+      text-shadow: 0 0 30px var(--neon-blue);
     }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.15); opacity: 0.7; }
+    /* Scan line on avatar */
+    .avatar-core::after {
+      content: '';
+      position: absolute; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+      opacity: 0.6;
+      animation: scanLine 2s ease-in-out infinite;
+    }
+    @keyframes scanLine {
+      0% { top: 10%; opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { top: 90%; opacity: 0; }
     }
 
-    .hero-content {
-      position: relative; z-index: 1;
+    /* ORBIT DOTS */
+    .orbit-dot {
+      position: absolute; width: 10px; height: 10px; border-radius: 50%;
+      background: var(--neon-blue);
+      box-shadow: 0 0 10px var(--neon-blue);
+      animation: orbitAround 4s linear infinite;
+    }
+    .orbit-dot:nth-child(2) { background: var(--neon-purple); box-shadow: 0 0 10px var(--neon-purple); animation-delay: -1.3s; }
+    .orbit-dot:nth-child(3) { background: var(--neon-pink); box-shadow: 0 0 10px var(--neon-pink); animation-delay: -2.6s; }
+    @keyframes orbitAround {
+      0% { transform: rotate(0deg) translateX(145px); }
+      100% { transform: rotate(360deg) translateX(145px); }
+    }
+
+    /* HERO TEXT */
+    .hero-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 4rem; align-items: center;
+      gap: 5rem; align-items: center;
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
     }
-    .hero-left { }
-    .hero-chip {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(26,79,214,0.12);
-      border: 1px solid rgba(26,79,214,0.3);
-      padding: 0.4rem 1rem; border-radius: 50px;
-      font-size: 0.8rem; font-weight: 600; color: #7aa7ff;
-      margin-bottom: 1.5rem;
-      animation: fadeDown 0.5s ease both;
+    .hero-label {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.65rem; letter-spacing: 4px;
+      color: var(--neon-blue);
+      text-shadow: 0 0 10px var(--neon-blue);
+      margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 0.8rem;
     }
-    .hero-chip .dot {
-      width: 7px; height: 7px;
-      background: #22c55e; border-radius: 50%;
-      box-shadow: 0 0 6px #22c55e;
-      animation: blink 1.5s infinite;
+    .hero-label::before {
+      content: '';
+      width: 30px; height: 1px;
+      background: var(--neon-blue);
+      box-shadow: 0 0 8px var(--neon-blue);
     }
-    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
-
     .hero-name {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 800; line-height: 1.0;
-      letter-spacing: -2px;
-      animation: fadeUp 0.7s 0.1s ease both;
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900; line-height: 1.1;
+      letter-spacing: -1px;
+      animation: heroEntrance 0.8s ease both;
     }
-    .hero-name .line2 {
-      background: linear-gradient(135deg, var(--primary), #6c9bff, var(--red));
+    .hero-name .name-line {
+      background: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-purple) 50%, var(--neon-pink) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(0,240,255,0.5));
+    }
+    @keyframes heroEntrance {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
-    .hero-role {
-      font-size: 1.1rem; color: var(--text-muted);
-      margin: 1rem 0 0.5rem;
-      animation: fadeUp 0.7s 0.2s ease both;
-    }
     .typewriter-wrap {
-      font-family: var(--font-display); font-size: 1.3rem; font-weight: 700;
-      color: var(--text); margin-bottom: 1.5rem;
-      animation: fadeUp 0.7s 0.3s ease both;
-      min-height: 1.6em;
+      font-family: 'Orbitron', monospace;
+      font-size: 1rem; color: var(--neon-green);
+      text-shadow: 0 0 15px var(--neon-green);
+      letter-spacing: 2px;
+      margin: 1rem 0;
+      min-height: 1.5em;
     }
-    #typewriter { border-right: 3px solid var(--primary); padding-right: 4px; }
+    #typewriter::after {
+      content: '|';
+      animation: blink 0.8s infinite;
+      color: var(--neon-blue);
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
     .hero-desc {
-      font-size: 1rem; color: var(--text-muted);
-      line-height: 1.8; max-width: 480px;
-      margin-bottom: 2.5rem;
-      animation: fadeUp 0.7s 0.35s ease both;
+      font-size: 1rem; color: var(--text-dim); line-height: 1.8;
+      margin: 1.2rem 0 2rem; font-family: 'Space Grotesk', sans-serif;
     }
-    .hero-actions {
-      display: flex; gap: 1rem; flex-wrap: wrap;
-      animation: fadeUp 0.7s 0.45s ease both;
-    }
+    .hero-desc strong { color: var(--text); }
 
-    /* HERO RIGHT - Avatar Card */
-    .hero-right {
-      display: flex; justify-content: center;
-      animation: fadeRight 0.8s 0.2s ease both;
+    /* STATS CHIPS */
+    .stat-chips { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .stat-chip {
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(0,240,255,0.3);
+      border-radius: 4px;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.65rem; letter-spacing: 2px;
+      color: var(--neon-blue);
+      background: rgba(0,240,255,0.05);
+      text-shadow: 0 0 8px var(--neon-blue);
+      box-shadow: 0 0 10px rgba(0,240,255,0.1);
     }
-    @keyframes fadeRight { from { opacity:0; transform:translateX(40px);} to { opacity:1; transform:translateX(0);} }
+    .stat-chip.purple { color: var(--neon-purple); border-color: rgba(191,0,255,0.3); background: rgba(191,0,255,0.05); text-shadow: 0 0 8px var(--neon-purple); box-shadow: 0 0 10px rgba(191,0,255,0.1); }
+    .stat-chip.pink { color: var(--neon-pink); border-color: rgba(255,0,170,0.3); background: rgba(255,0,170,0.05); text-shadow: 0 0 8px var(--neon-pink); box-shadow: 0 0 10px rgba(255,0,170,0.1); }
+    .stat-chip.gold { color: var(--neon-gold); border-color: rgba(255,215,0,0.3); background: rgba(255,215,0,0.05); text-shadow: 0 0 8px var(--neon-gold); box-shadow: 0 0 10px rgba(255,215,0,0.1); }
 
-    .avatar-card {
-      position: relative;
-      width: 340px; height: 400px;
-    }
-    .avatar-card-glow {
-      position: absolute; inset: -20px;
-      background: conic-gradient(from 0deg, var(--primary), var(--red), var(--primary));
-      border-radius: 40px;
-      filter: blur(40px); opacity: 0.3;
-      animation: spin 8s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .avatar-card-inner {
-      position: relative; z-index: 1;
-      width: 100%; height: 100%;
-      background: var(--dark3);
-      border: 1px solid var(--border);
-      border-radius: 32px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 1rem;
+    /* BUTTONS */
+    .btn-galaxy {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.9rem 2rem;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.75rem; letter-spacing: 2px;
+      border: none; border-radius: 4px; cursor: pointer;
+      text-decoration: none; transition: all 0.3s; position: relative;
       overflow: hidden;
     }
-    .avatar-card-inner::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--red));
-    }
-    .avatar-initials {
-      width: 130px; height: 130px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), #3b6ef7, var(--red));
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display);
-      font-size: 3rem; font-weight: 800;
-      box-shadow: 0 0 50px rgba(26,79,214,0.4);
-      position: relative;
-    }
-    .avatar-initials::after {
-      content: '';
-      position: absolute; inset: -4px;
-      border-radius: 50%;
-      border: 2px dashed rgba(255,255,255,0.2);
-      animation: spin 12s linear infinite;
-    }
-    .avatar-name {
-      font-family: var(--font-display);
-      font-size: 1.3rem; font-weight: 800;
-      text-align: center;
-    }
-    .avatar-sub { font-size: 0.8rem; color: var(--text-muted); text-align: center; }
-    .avatar-badges {
-      display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;
-      padding: 0 1.5rem;
-    }
-
-    /* STATS STRIP */
-    .stats-strip {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden; margin-top: 5rem;
-    }
-    .stat-item {
-      background: var(--dark);
-      padding: 2rem;
-      text-align: center;
-      transition: background var(--transition);
-    }
-    .stat-item:hover { background: var(--surface); }
-    .stat-num {
-      font-family: var(--font-display);
-      font-size: 2.5rem; font-weight: 800;
-      background: linear-gradient(135deg, var(--primary), var(--red));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-    }
-    .stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem; }
-
-    /* ABOUT STRIP */
-    .about-strip {
-      margin-top: 6rem;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 3rem; align-items: center;
-    }
-    .about-strip-text h2 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; }
-    .about-strip-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; }
-    .about-strip-facts { display: flex; flex-direction: column; gap: 0.75rem; }
-    .fact-row {
-      display: flex; align-items: center; gap: 1rem;
-      padding: 1rem 1.2rem;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius);
-      transition: border-color var(--transition), transform var(--transition);
-    }
-    .fact-row:hover { border-color: var(--border-hover); transform: translateX(6px); }
-    .fact-icon { font-size: 1.4rem; flex-shrink: 0; }
-    .fact-text { font-size: 0.875rem; font-weight: 500; }
-
-    /* SKILLS PREVIEW */
-    .skills-preview {
-      margin-top: 6rem;
-    }
-    .skills-preview-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 2rem;
-    }
-    .skills-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    .skill-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 2rem;
-      text-align: center;
-      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
-    }
-    .skill-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-8px);
-      box-shadow: 0 24px 50px rgba(26,79,214,0.12);
-    }
-    .skill-icon { font-size: 2.8rem; margin-bottom: 1rem; }
-    .skill-name { font-family: var(--font-display); font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; }
-    .skill-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
-
-    /* ACHIEVEMENTS PREVIEW */
-    .ach-preview { margin-top: 6rem; }
-    .ach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-    .ach-card {
-      display: flex; gap: 1.2rem; align-items: flex-start;
-      padding: 1.5rem; background: var(--surface);
-      border: 1px solid var(--border); border-radius: var(--radius-lg);
-      transition: border-color var(--transition), transform var(--transition);
-    }
-    .ach-card:hover { border-color: rgba(232,44,44,0.4); transform: translateY(-4px); }
-    .ach-medal { font-size: 2rem; flex-shrink: 0; }
-    .ach-card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.3rem; }
-    .ach-card-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
-
-    /* CTA SECTION */
-    .cta-section {
-      margin-top: 6rem; margin-bottom: 2rem;
-      padding: 4rem;
-      background: linear-gradient(135deg, rgba(26,79,214,0.12) 0%, rgba(232,44,44,0.08) 100%);
-      border: 1px solid rgba(26,79,214,0.2);
-      border-radius: 32px; text-align: center; position: relative; overflow: hidden;
-    }
-    .cta-section::before {
+    .btn-galaxy::before {
       content: '';
       position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a4fd6' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.1));
+      transform: translateX(-100%);
+      transition: transform 0.4s;
     }
-    .cta-section h2 {
-      font-family: var(--font-display); font-size: 2.2rem; font-weight: 800;
-      margin-bottom: 1rem; position: relative;
+    .btn-galaxy:hover::before { transform: translateX(100%); }
+    .btn-primary-gal {
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+      color: #000; font-weight: 700;
+      box-shadow: 0 0 30px rgba(0,240,255,0.4), 0 0 60px rgba(191,0,255,0.2);
     }
-    .cta-section p { color: var(--text-muted); margin-bottom: 2rem; position: relative; }
-    .cta-section .btn { position: relative; }
+    .btn-primary-gal:hover { box-shadow: 0 0 50px rgba(0,240,255,0.6), 0 0 100px rgba(191,0,255,0.3); transform: translateY(-3px); }
+    .btn-outline-gal {
+      background: transparent; color: var(--neon-blue);
+      border: 1px solid rgba(0,240,255,0.5);
+      box-shadow: 0 0 15px rgba(0,240,255,0.1), inset 0 0 15px rgba(0,240,255,0.03);
+    }
+    .btn-outline-gal:hover { border-color: var(--neon-blue); box-shadow: 0 0 30px rgba(0,240,255,0.3); transform: translateY(-3px); }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-    /* ANIMATIONS */
-    @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+    /* ============ SECTION STYLES ============ */
+    section.gal-section { padding: 7rem 0; position: relative; }
+    .gal-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
-    /* RESPONSIVE */
+    .section-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: 'Orbitron', monospace; font-size: 0.65rem;
+      letter-spacing: 3px; color: var(--neon-blue);
+      text-shadow: 0 0 10px var(--neon-blue);
+      margin-bottom: 0.8rem;
+    }
+    .section-badge::before, .section-badge::after {
+      content: '//';
+      color: rgba(0,240,255,0.4);
+    }
+    .gal-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900; letter-spacing: -1px;
+      background: linear-gradient(135deg, #fff 30%, var(--neon-blue) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Glowing divider */
+    .glow-divider {
+      height: 1px; margin: 0 0 4rem;
+      background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-purple), var(--neon-pink), transparent);
+      box-shadow: 0 0 10px rgba(0,240,255,0.5);
+    }
+
+    /* ============ ABOUT SECTION ============ */
+    .about-gal { background: rgba(0,240,255,0.02); border-top: 1px solid rgba(0,240,255,0.08); border-bottom: 1px solid rgba(0,240,255,0.08); }
+    .about-gal-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; }
+    .about-text p { font-family: 'Space Grotesk', sans-serif; color: var(--text-dim); line-height: 1.9; margin-bottom: 1rem; }
+    .about-text p strong { color: var(--text); }
+    .fact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .fact-gal {
+      padding: 1rem; border: 1px solid rgba(0,240,255,0.12);
+      border-radius: 6px; background: rgba(0,240,255,0.03);
+      display: flex; align-items: center; gap: 0.7rem;
+      transition: all 0.3s; font-size: 0.875rem;
+    }
+    .fact-gal:hover {
+      border-color: rgba(0,240,255,0.4);
+      background: rgba(0,240,255,0.06);
+      box-shadow: 0 0 15px rgba(0,240,255,0.08);
+      transform: translateX(4px);
+    }
+    .fact-gal .fi { font-size: 1.2rem; }
+
+    /* ============ SKILLS SECTION ============ */
+    .skills-hex-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .skill-gal {
+      position: relative; padding: 1.8rem 1.5rem;
+      border: 1px solid rgba(0,240,255,0.1);
+      border-radius: 8px; background: rgba(0,240,255,0.02);
+      text-align: center; overflow: hidden;
+      transition: all 0.4s;
+      cursor: default;
+    }
+    .skill-gal::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+    .skill-gal:hover::before { transform: scaleX(1); }
+    .skill-gal:hover {
+      border-color: rgba(0,240,255,0.35);
+      box-shadow: 0 0 30px rgba(0,240,255,0.1), inset 0 0 30px rgba(0,240,255,0.03);
+      transform: translateY(-6px);
+    }
+    .skill-gal:nth-child(2):hover { border-color: rgba(191,0,255,0.4); box-shadow: 0 0 30px rgba(191,0,255,0.1); }
+    .skill-gal:nth-child(2)::before { background: linear-gradient(90deg, transparent, var(--neon-purple), transparent); }
+    .skill-gal:nth-child(3):hover { border-color: rgba(255,0,170,0.4); box-shadow: 0 0 30px rgba(255,0,170,0.1); }
+    .skill-gal:nth-child(3)::before { background: linear-gradient(90deg, transparent, var(--neon-pink), transparent); }
+    .skill-gal:nth-child(4):hover { border-color: rgba(0,255,136,0.4); box-shadow: 0 0 30px rgba(0,255,136,0.1); }
+    .skill-icon-gal { font-size: 2.5rem; margin-bottom: 0.8rem; }
+    .skill-name-gal { font-family: 'Orbitron', monospace; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; color: var(--text); margin-bottom: 0.4rem; }
+    .skill-desc-gal { font-size: 0.78rem; color: var(--text-dim); line-height: 1.5; font-family: 'Space Grotesk', sans-serif; }
+
+    /* ============ ACHIEVEMENTS SECTION ============ */
+    .ach-gal-list { display: flex; flex-direction: column; gap: 1.2rem; }
+    .ach-gal {
+      display: grid; grid-template-columns: 60px 60px 1fr;
+      gap: 1.5rem; align-items: center;
+      padding: 1.8rem 2rem;
+      border: 1px solid rgba(0,240,255,0.1);
+      border-radius: 8px;
+      background: rgba(0,240,255,0.02);
+      position: relative; overflow: hidden;
+      transition: all 0.4s;
+    }
+    .ach-gal::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      background: linear-gradient(180deg, var(--neon-blue), var(--neon-purple));
+      box-shadow: 0 0 10px var(--neon-blue);
+    }
+    .ach-gal::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(0,240,255,0.04), transparent);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .ach-gal:hover { border-color: rgba(0,240,255,0.35); transform: translateX(8px); box-shadow: 0 0 30px rgba(0,240,255,0.08); }
+    .ach-gal:hover::after { opacity: 1; }
+    .ach-num-gal { font-family: 'Orbitron', monospace; font-size: 2rem; font-weight: 900; color: rgba(0,240,255,0.2); text-align: center; line-height: 1; }
+    .ach-emoji-gal { font-size: 2rem; text-align: center; }
+    .ach-title-gal { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; letter-spacing: 0.5px; }
+    .ach-desc-gal { font-size: 0.82rem; color: var(--text-dim); line-height: 1.5; font-family: 'Space Grotesk', sans-serif; margin-bottom: 0.6rem; }
+    .ach-tag-gal {
+      display: inline-flex; align-items: center;
+      padding: 0.2rem 0.7rem;
+      border: 1px solid rgba(0,240,255,0.3);
+      border-radius: 2px;
+      font-family: 'Orbitron', monospace; font-size: 0.6rem; letter-spacing: 2px;
+      color: var(--neon-blue);
+    }
+    .ach-tag-gal.red { border-color: rgba(255,0,170,0.4); color: var(--neon-pink); }
+    .ach-tag-gal.gold { border-color: rgba(255,215,0,0.4); color: var(--neon-gold); }
+    .ach-tag-gal.green { border-color: rgba(0,255,136,0.4); color: var(--neon-green); }
+
+    /* ============ PROJECTS GRID ============ */
+    .projects-gal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .project-gal-card {
+      padding: 2rem; border-radius: 8px;
+      border: 1px solid rgba(0,240,255,0.1);
+      background: rgba(0,240,255,0.02);
+      position: relative; overflow: hidden;
+      transition: all 0.4s;
+    }
+    .project-gal-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    }
+    .project-gal-card.card-red::before { background: linear-gradient(90deg, var(--red), var(--neon-pink)); box-shadow: 0 0 10px var(--red); }
+    .project-gal-card.card-blue::before { background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple)); box-shadow: 0 0 10px var(--neon-blue); }
+    .project-gal-card:hover { border-color: rgba(0,240,255,0.3); transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,240,255,0.1); }
+    .project-gal-card.card-red:hover { border-color: rgba(255,0,170,0.3); box-shadow: 0 20px 60px rgba(255,0,170,0.1); }
+    .proj-icon-gal { font-size: 2.5rem; margin-bottom: 1rem; }
+    .proj-title-gal { font-family: 'Orbitron', monospace; font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.8rem; }
+    .proj-desc-gal { font-family: 'Space Grotesk', sans-serif; font-size: 0.83rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 1rem; }
+    .proj-tags-gal { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+    /* ============ CONTACT SECTION ============ */
+    .contact-gal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .contact-gal-card {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(0,240,255,0.15);
+      border-radius: 6px; background: rgba(0,240,255,0.03);
+      text-decoration: none; color: var(--text);
+      transition: all 0.3s; margin-bottom: 0.8rem;
+    }
+    .contact-gal-card:hover { border-color: rgba(0,240,255,0.5); background: rgba(0,240,255,0.06); transform: translateX(6px); box-shadow: 0 0 20px rgba(0,240,255,0.1); }
+    .cgc-icon { width: 44px; height: 44px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .cgc-blue { background: linear-gradient(135deg, rgba(0,240,255,0.2), rgba(0,240,255,0.05)); border: 1px solid rgba(0,240,255,0.3); }
+    .cgc-red { background: linear-gradient(135deg, rgba(255,34,68,0.2), rgba(255,34,68,0.05)); border: 1px solid rgba(255,34,68,0.3); }
+    .cgc-green { background: linear-gradient(135deg, rgba(0,255,136,0.2), rgba(0,255,136,0.05)); border: 1px solid rgba(0,255,136,0.3); }
+    .cgc-purple { background: linear-gradient(135deg, rgba(191,0,255,0.2), rgba(191,0,255,0.05)); border: 1px solid rgba(191,0,255,0.3); }
+    .cgc-label { font-family: 'Orbitron', monospace; font-size: 0.55rem; letter-spacing: 2px; color: var(--text-dim); margin-bottom: 0.2rem; }
+    .cgc-value { font-size: 0.9rem; font-weight: 600; }
+
+    /* Map Box */
+    .map-gal-wrap {
+      border: 1px solid rgba(0,240,255,0.2); border-radius: 8px; overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,240,255,0.1);
+    }
+    .map-gal-header {
+      background: rgba(0,240,255,0.05); padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(0,240,255,0.1);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .map-gal-title { font-family: 'Orbitron', monospace; font-size: 0.7rem; letter-spacing: 2px; color: var(--neon-blue); text-shadow: 0 0 8px var(--neon-blue); }
+    .map-open-btn {
+      padding: 0.4rem 1rem; font-family: 'Orbitron', monospace; font-size: 0.6rem; letter-spacing: 1px;
+      background: rgba(0,240,255,0.1); border: 1px solid rgba(0,240,255,0.3); border-radius: 4px;
+      color: var(--neon-blue); text-decoration: none; transition: all 0.3s;
+    }
+    .map-open-btn:hover { background: rgba(0,240,255,0.2); box-shadow: 0 0 15px rgba(0,240,255,0.2); }
+
+    /* ============ FOOTER ============ */
+    .gal-footer {
+      padding: 3rem 2rem; text-align: center;
+      border-top: 1px solid rgba(0,240,255,0.1);
+      position: relative;
+    }
+    .gal-footer::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-purple), var(--neon-pink), transparent);
+    }
+    .footer-logo-gal { font-family: 'Orbitron', monospace; font-size: 1.2rem; font-weight: 900; letter-spacing: 3px; color: var(--neon-blue); text-shadow: 0 0 20px var(--neon-blue); margin-bottom: 1rem; }
+    .footer-links-gal { display: flex; gap: 2rem; justify-content: center; margin-bottom: 1.5rem; }
+    .footer-links-gal a { font-family: 'Orbitron', monospace; font-size: 0.6rem; letter-spacing: 2px; color: var(--text-dim); text-decoration: none; transition: color 0.3s; }
+    .footer-links-gal a:hover { color: var(--neon-blue); text-shadow: 0 0 8px var(--neon-blue); }
+    .footer-copy-gal { font-size: 0.75rem; color: rgba(232,244,255,0.2); font-family: 'Space Grotesk', sans-serif; }
+
+    /* ============ SCROLL REVEAL ============ */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-l { opacity: 0; transform: translateX(-30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-l.visible { opacity: 1; transform: translateX(0); }
+    .reveal-r { opacity: 0; transform: translateX(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-r.visible { opacity: 1; transform: translateX(0); }
+    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; }
+    .d5 { transition-delay: 0.5s; } .d6 { transition-delay: 0.6s; }
+
+    /* ============ RESPONSIVE ============ */
     @media (max-width: 900px) {
-      .hero-content { grid-template-columns: 1fr; text-align: center; }
-      .hero-right { display: none; }
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .holo-ring-wrap { margin: 0 auto; }
       .hero-actions { justify-content: center; }
-      .hero-desc { margin: 0 auto 2rem; }
-      .stats-strip { grid-template-columns: repeat(2, 1fr); }
-      .skills-grid { grid-template-columns: repeat(2, 1fr); }
-      .ach-grid { grid-template-columns: 1fr; }
-      .about-strip { grid-template-columns: 1fr; }
+      .about-gal-grid { grid-template-columns: 1fr; }
+      .skills-hex-grid { grid-template-columns: repeat(2,1fr); }
+      .projects-gal-grid { grid-template-columns: 1fr; }
+      .contact-gal-grid { grid-template-columns: 1fr; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
     }
     @media (max-width: 560px) {
-      .skills-grid { grid-template-columns: 1fr; }
-      .stats-strip { grid-template-columns: repeat(2, 1fr); }
-      .cta-section { padding: 2.5rem 1.5rem; }
-      .hero-name { font-size: 2.8rem; }
+      .skills-hex-grid { grid-template-columns: 1fr; }
+      .fact-grid { grid-template-columns: 1fr; }
+      .ach-gal { grid-template-columns: 40px 40px 1fr; gap: 1rem; padding: 1.2rem; }
     }
   </style>
 </head>
 <body>
+  <!-- CURSOR -->
+  <div id="cursor-outer"></div>
+  <div id="cursor-inner"></div>
 
-  <!-- NAVIGATION -->
-  <nav class="nav">
-    <a href="index.html" class="nav-logo">Aniket.dev</a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html" class="nav-cta btn">Contact Me</a></li>
+  <!-- GALAXY BACKGROUND -->
+  <canvas id="galaxy-canvas"></canvas>
+  <div class="nebula nebula-1"></div>
+  <div class="nebula nebula-2"></div>
+  <div class="nebula nebula-3"></div>
+  <div class="nebula nebula-4"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">ANIKET.DEV</div>
+    <ul class="nav-links" style="list-style:none; display:flex; gap:0.3rem;">
+      <li><a href="#home" class="active">HOME</a></li>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#skills">SKILLS</a></li>
+      <li><a href="#achievements">ACHIEVEMENTS</a></li>
+      <li><a href="#projects">PROJECTS</a></li>
+      <li><a href="#contact">CONTACT</a></li>
     </ul>
-    <div class="hamburger">
-      <span></span><span></span><span></span>
-    </div>
-  </nav>
-  <nav class="mobile-nav">
-    <a href="index.html" class="active">🏠 Home</a>
-    <a href="about.html">👤 About</a>
-    <a href="projects.html">💡 Projects</a>
-    <a href="contact.html">📩 Contact</a>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <canvas id="particles"></canvas>
-    <div class="hero-glow-1"></div>
-    <div class="hero-glow-2"></div>
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-left">
-          <div class="hero-chip">
-            <span class="dot"></span>
-            Open to Collaborations &amp; Learning
-          </div>
+  <div class="page">
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="home">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-label">STUDENT · EXPLORER · LEARNER</div>
           <h1 class="hero-name">
-            Hi, I'm<br>
-            <span class="line2">Aniket<br>Chaudhari</span>
+            HI, I'M<br>
+            <span class="name-line">ANIKET</span><br>
+            <span class="name-line">CHAUDHARI</span>
           </h1>
-          <p class="hero-role">7th Standard · Amba School for Excellence · Age 13</p>
           <div class="typewriter-wrap"><span id="typewriter"></span></div>
           <p class="hero-desc">
-            A passionate, curious student who loves Maths, Science, Chess, and Sitar. 
-            I believe hard work and discipline are the keys to success. 
-            Class topper with big dreams! 🚀
+            A <strong>13-year-old</strong> class topper at <strong>Amba School for Excellence</strong>, Patan, Gujarat.
+            Passionate about Maths, Science, Chess ♟️, and Sitar 🎵.
+            Hard work + Discipline = Success. 🚀
           </p>
+          <div class="stat-chips">
+            <div class="stat-chip">7TH STANDARD</div>
+            <div class="stat-chip purple">CLASS TOPPER 🔥</div>
+            <div class="stat-chip pink">6+ ACHIEVEMENTS</div>
+            <div class="stat-chip gold">PATAN · GUJARAT</div>
+          </div>
           <div class="hero-actions">
-            <a href="about.html" class="btn btn-primary">Explore My Story →</a>
-            <a href="contact.html" class="btn btn-outline">Get In Touch</a>
+            <a href="#achievements" class="btn-galaxy btn-primary-gal">VIEW ACHIEVEMENTS →</a>
+            <a href="#contact" class="btn-galaxy btn-outline-gal">CONTACT ME</a>
           </div>
         </div>
-        <div class="hero-right">
-          <div class="avatar-card">
-            <div class="avatar-card-glow"></div>
-            <div class="avatar-card-inner">
-              <div class="avatar-initials">AC</div>
-              <div class="avatar-name">Aniket Chaudhari</div>
-              <div class="avatar-sub">Student · Learner · Explorer</div>
-              <div class="avatar-badges">
-                <span class="tag">♟️ Chess</span>
-                <span class="tag">🎵 Sitar</span>
-                <span class="tag">🏏 Cricket</span>
-                <span class="tag--red tag">🔥 Topper</span>
+        <div style="display:flex; justify-content:center;">
+          <div class="holo-ring-wrap">
+            <div class="holo-ring holo-ring-1"></div>
+            <div class="holo-ring holo-ring-2"></div>
+            <div class="holo-ring holo-ring-3"></div>
+            <div class="orbit-dot"></div>
+            <div class="orbit-dot"></div>
+            <div class="orbit-dot"></div>
+            <div class="avatar-core">AC</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="gal-section about-gal" id="about">
+      <div class="gal-container">
+        <div class="about-gal-grid">
+          <div class="reveal-l">
+            <div class="section-badge">ABOUT_ME</div>
+            <h2 class="gal-title">CURIOUS MIND.<br>BIG DREAMS.</h2>
+            <p>My name is <strong>Aniket Chaudhari</strong>. I am a 13-year-old <strong>7th Standard student</strong> at Amba School for Excellence, Patan, Gujarat. I am proud to be a <strong>class topper</strong> with a passion for learning every single day.</p>
+            <p>I love reading about <strong>famous personalities</strong> and their inspiring life stories. My favourite subjects are <strong>Maths and Science</strong> — they teach me to think logically and explore the world around me.</p>
+            <p>I play <strong>Chess ♟️</strong> for strategic thinking and the <strong>Sitar 🎵</strong> for creativity. I believe that <strong>hard work + discipline = success</strong>, and I work to make my parents proud every day!</p>
+          </div>
+          <div class="reveal-r">
+            <div class="fact-grid">
+              <div class="fact-gal d1"><span class="fi">🎓</span><span>7th Std Student</span></div>
+              <div class="fact-gal d2"><span class="fi">🏆</span><span>Class Topper</span></div>
+              <div class="fact-gal d3"><span class="fi">♟️</span><span>Chess Player</span></div>
+              <div class="fact-gal d4"><span class="fi">🎵</span><span>Sitar Player</span></div>
+              <div class="fact-gal d5"><span class="fi">🏏</span><span>Cricket Fan</span></div>
+              <div class="fact-gal d1"><span class="fi">📖</span><span>Book Reader</span></div>
+              <div class="fact-gal d2"><span class="fi">🔢</span><span>Maths Lover</span></div>
+              <div class="fact-gal d3"><span class="fi">🔬</span><span>Science Nerd</span></div>
+              <div class="fact-gal d4"><span class="fi">🎨</span><span>Blue & Red Fan</span></div>
+              <div class="fact-gal d5"><span class="fi">📍</span><span>Patan, Gujarat</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section class="gal-section" id="skills">
+      <div class="gal-container">
+        <div class="section-badge reveal">CORE_SKILLS</div>
+        <h2 class="gal-title reveal">WHAT I'M GOOD AT</h2>
+        <div class="glow-divider"></div>
+        <div class="skills-hex-grid">
+          <div class="skill-gal reveal d1"><div class="skill-icon-gal">🧠</div><div class="skill-name-gal">PROBLEM SOLVING</div><div class="skill-desc-gal">Strong logical thinking powered by Maths & Science excellence</div></div>
+          <div class="skill-gal reveal d2"><div class="skill-icon-gal">🤝</div><div class="skill-name-gal">LEADERSHIP</div><div class="skill-desc-gal">Taking initiative and guiding teammates in school activities</div></div>
+          <div class="skill-gal reveal d3"><div class="skill-icon-gal">💬</div><div class="skill-name-gal">COMMUNICATION</div><div class="skill-desc-gal">Clear, confident communication through reading and writing</div></div>
+          <div class="skill-gal reveal d4"><div class="skill-icon-gal">🎯</div><div class="skill-name-gal">DISCIPLINE</div><div class="skill-desc-gal">Regular study habits and consistent top performance</div></div>
+          <div class="skill-gal reveal d5"><div class="skill-icon-gal">🔍</div><div class="skill-name-gal">CURIOSITY</div><div class="skill-desc-gal">Always asking "why?" and exploring the world deeply</div></div>
+          <div class="skill-gal reveal d6"><div class="skill-icon-gal">👥</div><div class="skill-name-gal">TEAMWORK</div><div class="skill-desc-gal">Collaborating effectively in group projects and events</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ACHIEVEMENTS ===== -->
+    <section class="gal-section about-gal" id="achievements">
+      <div class="gal-container">
+        <div class="section-badge reveal">ACHIEVEMENTS</div>
+        <h2 class="gal-title reveal">CERTIFICATES &amp; RECOGNITION</h2>
+        <div class="glow-divider"></div>
+        <div class="ach-gal-list">
+          <div class="ach-gal reveal d1">
+            <div class="ach-num-gal">01</div>
+            <div class="ach-emoji-gal">🥇</div>
+            <div>
+              <div class="ach-title-gal">1st Place — Jawahar Navodaya Vidyalaya (JNV) Exam</div>
+              <div class="ach-desc-gal">Topped the prestigious JNV entrance exam — a national-level test covering Maths, Science & Language. One of my proudest achievements!</div>
+              <span class="ach-tag-gal gold">🏆 1ST PLACE</span> <span class="ach-tag-gal">NATIONAL LEVEL</span>
+            </div>
+          </div>
+          <div class="ach-gal reveal d2">
+            <div class="ach-num-gal">02</div>
+            <div class="ach-emoji-gal">🏆</div>
+            <div>
+              <div class="ach-title-gal">1st Place — Vikas Vartul GK IQ Exam</div>
+              <div class="ach-desc-gal">Won first position in the GK & IQ competition, proving strong general awareness, logical reasoning and intelligence.</div>
+              <span class="ach-tag-gal gold">🏆 1ST PLACE</span> <span class="ach-tag-gal">GK &amp; IQ</span>
+            </div>
+          </div>
+          <div class="ach-gal reveal d3">
+            <div class="ach-num-gal">03</div>
+            <div class="ach-emoji-gal">📜</div>
+            <div>
+              <div class="ach-title-gal">Participant — Common Entrance Test (CET)</div>
+              <div class="ach-desc-gal">Successfully appeared in the highly competitive CET, showcasing academic strength and competitive mindset.</div>
+              <span class="ach-tag-gal">CERTIFICATE</span> <span class="ach-tag-gal">COMPETITIVE EXAM</span>
+            </div>
+          </div>
+          <div class="ach-gal reveal d4">
+            <div class="ach-num-gal">04</div>
+            <div class="ach-emoji-gal">🎭</div>
+            <div>
+              <div class="ach-title-gal">Participant — School Annual Day</div>
+              <div class="ach-desc-gal">Actively participated and performed at school annual day with confidence, showcasing teamwork and stage presence.</div>
+              <span class="ach-tag-gal red">EXTRACURRICULAR</span> <span class="ach-tag-gal">STAGE PERFORMANCE</span>
+            </div>
+          </div>
+          <div class="ach-gal reveal d5">
+            <div class="ach-num-gal">05</div>
+            <div class="ach-emoji-gal">🍳</div>
+            <div>
+              <div class="ach-title-gal">Swayam Pak — Gurukul Cooking Activity</div>
+              <div class="ach-desc-gal">Self-cooking activity at Gurukul — learned self-reliance, patience and the joy of preparing food with my own hands. An unforgettable life lesson!</div>
+              <span class="ach-tag-gal green">GURUKUL ACTIVITY</span> <span class="ach-tag-gal">LIFE SKILLS</span>
+            </div>
+          </div>
+          <div class="ach-gal reveal d6">
+            <div class="ach-num-gal">06</div>
+            <div class="ach-emoji-gal">🔭</div>
+            <div>
+              <div class="ach-title-gal">LTM Outing — Science City Exploration</div>
+              <div class="ach-desc-gal">Educational trip to Science City exploring space, robotics, energy & live science experiments through hands-on learning. Deepened my love for Science!</div>
+              <span class="ach-tag-gal">LTM TRIP</span> <span class="ach-tag-gal green">SCIENCE CITY</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section class="gal-section" id="projects">
+      <div class="gal-container">
+        <div class="section-badge reveal">SCHOOL_PROJECTS</div>
+        <h2 class="gal-title reveal">PROJECTS &amp; ACTIVITIES</h2>
+        <div class="glow-divider"></div>
+        <div class="projects-gal-grid">
+          <div class="project-gal-card card-red reveal d1">
+            <div class="proj-icon-gal">🍳</div>
+            <div class="proj-title-gal">SWAYAM PAK — GURUKUL</div>
+            <div class="proj-desc-gal">Participated in the unique self-cooking activity at Gurukul. Prepared my own meal from scratch, learning self-reliance, patience, and discipline. Food made with your own hands brings the greatest joy!</div>
+            <div class="proj-tags-gal"><span class="ach-tag-gal red">COOKING</span><span class="ach-tag-gal">SELF-RELIANCE</span><span class="ach-tag-gal">GURUKUL</span></div>
+          </div>
+          <div class="project-gal-card card-blue reveal d2">
+            <div class="proj-icon-gal">🔭</div>
+            <div class="proj-title-gal">LTM OUTING — SCIENCE CITY</div>
+            <div class="proj-desc-gal">Exciting LTM (Learn Through Movement) educational trip to Science City! Explored space science, robotics, energy and physics through live hands-on experiments. Science City made learning feel like a real adventure!</div>
+            <div class="proj-tags-gal"><span class="ach-tag-gal">SCIENCE CITY</span><span class="ach-tag-gal green">HANDS-ON</span><span class="ach-tag-gal">LTM TRIP</span></div>
+          </div>
+          <div class="project-gal-card card-blue reveal d3">
+            <div class="proj-icon-gal">♟️</div>
+            <div class="proj-title-gal">CHESS STRATEGY CLUB</div>
+            <div class="proj-desc-gal">Regular chess practice sharpens my logical thinking, patience and decision-making. Chess teaches me to think many steps ahead — a skill useful in all areas of life!</div>
+            <div class="proj-tags-gal"><span class="ach-tag-gal">CHESS</span><span class="ach-tag-gal">STRATEGY</span></div>
+          </div>
+          <div class="project-gal-card card-red reveal d4">
+            <div class="proj-icon-gal">🎵</div>
+            <div class="proj-title-gal">SITAR — INDIAN CLASSICAL MUSIC</div>
+            <div class="proj-desc-gal">I play the Sitar, a beautiful Indian classical instrument. Music teaches creativity, discipline and rhythm. I practice regularly and love performing for my family!</div>
+            <div class="proj-tags-gal"><span class="ach-tag-gal red">SITAR</span><span class="ach-tag-gal">MUSIC</span><span class="ach-tag-gal green">CLASSICAL</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="gal-section about-gal" id="contact">
+      <div class="gal-container">
+        <div class="section-badge reveal">CONTACT</div>
+        <h2 class="gal-title reveal">LET'S CONNECT 🚀</h2>
+        <div class="glow-divider"></div>
+        <div class="contact-gal-grid">
+          <div>
+            <p style="font-family:'Space Grotesk',sans-serif; color:var(--text-dim); line-height:1.8; margin-bottom:2rem;" class="reveal">
+              I'm a <strong style="color:var(--text);">7th Standard Student</strong> (not a teacher!) always happy to make new friends, learn new things, and collaborate. Say hello! 😊
+            </p>
+            <a href="mailto:aniketkc110@gmail.com" class="contact-gal-card reveal d1">
+              <div class="cgc-icon cgc-blue">📧</div>
+              <div><div class="cgc-label">EMAIL</div><div class="cgc-value">aniketkc110@gmail.com</div></div>
+            </a>
+            <a href="tel:9925641188" class="contact-gal-card reveal d2">
+              <div class="cgc-icon cgc-red">📞</div>
+              <div><div class="cgc-label">PHONE (PRIMARY)</div><div class="cgc-value">+91 9925641188</div></div>
+            </a>
+            <a href="tel:9727825424" class="contact-gal-card reveal d3">
+              <div class="cgc-icon cgc-green">📱</div>
+              <div><div class="cgc-label">PHONE (SECONDARY)</div><div class="cgc-value">+91 9727825424</div></div>
+            </a>
+            <div class="contact-gal-card reveal d4">
+              <div class="cgc-icon cgc-purple">🏫</div>
+              <div><div class="cgc-label">SCHOOL</div><div class="cgc-value">Amba School for Excellence, Patan</div></div>
+            </div>
+            <a href="https://www.google.com/maps/place/1,+State+Hwy+10,+1,+State+Hwy+10,+Akta+Park+Society,+Patan,+Sandesarpati,+Gujarat+384265/@23.8369934,72.1037652,319m/data=!3m2!1e3!4b1!4m6!3m5!1s0x395c8787f10ca671:0x7bb4d66254d90955!8m2!3d23.836991!4d72.1050527!16s%2Fg%2F11jyxv_t_y" target="_blank" class="contact-gal-card reveal d5">
+              <div class="cgc-icon cgc-green">📍</div>
+              <div><div class="cgc-label">MY LOCATION</div><div class="cgc-value">Akta Park Society, Patan, Gujarat 384265</div><div style="font-size:0.7rem; color:var(--neon-blue); margin-top:0.2rem; font-family:'Orbitron',monospace; letter-spacing:1px;">VIEW ON GOOGLE MAPS →</div></div>
+            </a>
+          </div>
+          <div class="reveal-r">
+            <div class="map-gal-wrap">
+              <div class="map-gal-header">
+                <div class="map-gal-title">📍 MY LOCATION · PATAN, GUJARAT</div>
+                <a href="https://www.google.com/maps/place/1,+State+Hwy+10,+1,+State+Hwy+10,+Akta+Park+Society,+Patan,+Sandesarpati,+Gujarat+384265/@23.8369934,72.1037652,319m" target="_blank" class="map-open-btn">OPEN MAP →</a>
+              </div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d638.0!2d72.1037652!3d23.8369934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395c8787f10ca671%3A0x7bb4d66254d90955!2sAkta%20Park%20Society%2C%20Patan%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                width="100%" height="360"
+                style="border:0; display:block; filter:invert(92%) hue-rotate(180deg) saturate(0.7);"
+                allowfullscreen="" loading="lazy">
+              </iframe>
+              <div style="padding:0.75rem 1.5rem; background:rgba(0,240,255,0.03); border-top:1px solid rgba(0,240,255,0.1); display:flex; gap:0.5rem; flex-wrap:wrap;">
+                <span class="ach-tag-gal">📍 PATAN · GUJARAT</span>
+                <span class="ach-tag-gal">🇮🇳 INDIA</span>
+                <span class="ach-tag-gal green">📮 PIN 384265</span>
+                <span class="ach-tag-gal gold">🎓 STUDENT</span>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- STATS -->
-      <div class="stats-strip reveal">
-        <div class="stat-item">
-          <div class="stat-num"><span data-count="7" data-suffix="th">7th</span></div>
-          <div class="stat-label">Standard</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num"><span data-count="13">13</span></div>
-          <div class="stat-label">Years Old</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num"><span data-count="6">6</span><span>+</span></div>
-          <div class="stat-label">Achievements</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">∞</div>
-          <div class="stat-label">Curiosity</div>
-        </div>
-      </div>
-
-      <!-- ABOUT STRIP -->
-      <div class="about-strip">
-        <div class="about-strip-text reveal-left">
-          <span class="section-eyebrow">About Me</span>
-          <h2>A Curious Mind<br>Always Learning 🧠</h2>
-          <p>I study at Amba School for Excellence and I love exploring new ideas. My favorite subjects are Maths and Science. I believe that every day is a chance to grow!</p>
-          <a href="about.html" class="btn btn-outline" style="margin-top:0.5rem;">Read More →</a>
-        </div>
-        <div class="about-strip-facts reveal-right">
-          <div class="fact-row delay-1"><span class="fact-icon">📚</span><span class="fact-text">Class Topper in 7th Standard</span></div>
-          <div class="fact-row delay-2"><span class="fact-icon">♟️</span><span class="fact-text">Chess Player — Strategic Thinker</span></div>
-          <div class="fact-row delay-3"><span class="fact-icon">🎵</span><span class="fact-text">Sitar Player — Indian Classical Music</span></div>
-          <div class="fact-row delay-4"><span class="fact-icon">🏏</span><span class="fact-text">Cricket Enthusiast</span></div>
-          <div class="fact-row delay-5"><span class="fact-icon">📖</span><span class="fact-text">Books & Comics Reader</span></div>
-        </div>
-      </div>
-
-      <!-- SKILLS PREVIEW -->
-      <div class="skills-preview">
-        <div class="skills-preview-header reveal">
-          <div>
-            <span class="section-eyebrow">Core Skills</span>
-            <h2 class="section-title" style="margin-bottom:0;">What I'm Good At</h2>
-          </div>
-          <a href="about.html#skills" class="btn btn-outline">All Skills →</a>
-        </div>
-        <div class="skills-grid">
-          <div class="skill-card reveal delay-1">
-            <div class="skill-icon">🧠</div>
-            <div class="skill-name">Problem Solving</div>
-            <div class="skill-desc">Strong logical thinking powered by Maths & Science excellence</div>
-          </div>
-          <div class="skill-card reveal delay-2">
-            <div class="skill-icon">🤝</div>
-            <div class="skill-name">Leadership</div>
-            <div class="skill-desc">Taking initiative, guiding peers, and leading school activities</div>
-          </div>
-          <div class="skill-card reveal delay-3">
-            <div class="skill-icon">💬</div>
-            <div class="skill-name">Communication</div>
-            <div class="skill-desc">Clear, confident communication through reading and writing</div>
-          </div>
-          <div class="skill-card reveal delay-4">
-            <div class="skill-icon">🎯</div>
-            <div class="skill-name">Focus & Discipline</div>
-            <div class="skill-desc">Regular study habits, consistent performance, and self-discipline</div>
-          </div>
-          <div class="skill-card reveal delay-5">
-            <div class="skill-icon">🔍</div>
-            <div class="skill-name">Curiosity</div>
-            <div class="skill-desc">Always asking "why?" and exploring famous personalities & history</div>
-          </div>
-          <div class="skill-card reveal delay-6">
-            <div class="skill-icon">👥</div>
-            <div class="skill-name">Teamwork</div>
-            <div class="skill-desc">Collaborating effectively in group projects and school events</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ACHIEVEMENTS PREVIEW -->
-      <div class="ach-preview">
-        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:2rem;">
-          <div class="reveal">
-            <span class="section-eyebrow">Achievements</span>
-            <h2 class="section-title" style="margin-bottom:0;">My Proud Moments 🏆</h2>
-          </div>
-          <a href="projects.html" class="btn btn-outline reveal">View All →</a>
-        </div>
-        <div class="ach-grid">
-          <div class="ach-card reveal delay-1">
-            <div class="ach-medal">🥇</div>
-            <div>
-              <div class="ach-card-title">1st Place — JNV Exam</div>
-              <div class="ach-card-desc">Secured first position in the prestigious Jawahar Navodaya Vidyalaya entrance exam</div>
-              <span class="tag" style="margin-top:0.5rem;">Academic</span>
-            </div>
-          </div>
-          <div class="ach-card reveal delay-2">
-            <div class="ach-medal">🏆</div>
-            <div>
-              <div class="ach-card-title">1st Place — Vikas Vartul GK IQ</div>
-              <div class="ach-card-desc">Won first place in General Knowledge & IQ competition, proving strong awareness</div>
-              <span class="tag" style="margin-top:0.5rem;">GK & IQ</span>
-            </div>
-          </div>
-          <div class="ach-card reveal delay-3">
-            <div class="ach-medal">📜</div>
-            <div>
-              <div class="ach-card-title">Participant — CET</div>
-              <div class="ach-card-desc">Participated in the Common Entrance Test, showcasing competitive academic skills</div>
-              <span class="tag" style="margin-top:0.5rem;">Competitive</span>
-            </div>
-          </div>
-          <div class="ach-card reveal delay-4">
-            <div class="ach-medal">🎭</div>
-            <div>
-              <div class="ach-card-title">School Annual Day</div>
-              <div class="ach-card-desc">Actively participated and performed at school annual day with confidence</div>
-              <span class="tag--red tag" style="margin-top:0.5rem;">Extracurricular</span>
-            </div>
-          </div>
-          <div class="ach-card reveal delay-1">
-            <div class="ach-medal">🍳</div>
-            <div>
-              <div class="ach-card-title">Swayam Pak — Gurukul</div>
-              <div class="ach-card-desc">Self-cooking activity at Gurukul — learned self-reliance, patience and the joy of preparing food with own hands</div>
-              <span class="tag--red tag" style="margin-top:0.5rem;">Gurukul Activity</span>
-            </div>
-          </div>
-          <div class="ach-card reveal delay-2">
-            <div class="ach-medal">🔭</div>
-            <div>
-              <div class="ach-card-title">LTM Outing — Science City</div>
-              <div class="ach-card-desc">Educational trip to Science City exploring space, robotics, energy & live science experiments through hands-on learning</div>
-              <span class="tag" style="margin-top:0.5rem;">LTM Trip</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <div class="cta-section reveal">
-        <h2>Let's <span class="gradient-text">Connect</span> &amp; Grow Together! 🚀</h2>
-        <p>I'm always happy to make new friends, learn new things, and collaborate on exciting ideas.</p>
-        <a href="contact.html" class="btn btn-primary">Say Hello 👋</a>
-      </div>
-
-    </div>
-  </section>
+  </div><!-- end page -->
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-logo">Aniket.dev</div>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="footer-copy">Made with ❤️ by Aniket Chaudhari · 7th Standard · Amba School for Excellence · 2025</div>
+  <footer class="gal-footer">
+    <div class="footer-logo-gal">ANIKET.DEV</div>
+    <div class="footer-links-gal">
+      <a href="#home">HOME</a>
+      <a href="#about">ABOUT</a>
+      <a href="#skills">SKILLS</a>
+      <a href="#achievements">ACHIEVEMENTS</a>
+      <a href="#projects">PROJECTS</a>
+      <a href="#contact">CONTACT</a>
     </div>
+    <div class="footer-copy-gal">Made with ❤️ + 🌌 by Aniket Chaudhari · 7th Standard · Amba School for Excellence · Patan, Gujarat · 2025</div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script>
+    // ---- GALAXY STARS ----
+    const canvas = document.getElementById('galaxy-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const stars = Array.from({length: 300}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5 + 0.2,
+      o: Math.random() * 0.8 + 0.1,
+      speed: Math.random() * 0.3 + 0.05,
+      twinkle: Math.random() * Math.PI * 2
+    }));
+
+    // Shooting stars
+    const shootingStars = [];
+    function addShootingStar() {
+      shootingStars.push({
+        x: Math.random() * canvas.width * 0.6,
+        y: Math.random() * canvas.height * 0.4,
+        len: Math.random() * 120 + 60,
+        speed: Math.random() * 8 + 6,
+        opacity: 1,
+        angle: Math.PI / 4
+      });
+    }
+    setInterval(addShootingStar, 3000);
+
+    function drawGalaxy(t) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        s.twinkle += 0.02;
+        const o = s.o * (0.7 + 0.3 * Math.sin(s.twinkle));
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(180,220,255,${o})`;
+        ctx.fill();
+      });
+      // Shooting stars
+      for (let i = shootingStars.length - 1; i >= 0; i--) {
+        const ss = shootingStars[i];
+        const grad = ctx.createLinearGradient(ss.x, ss.y, ss.x + Math.cos(ss.angle) * ss.len, ss.y + Math.sin(ss.angle) * ss.len);
+        grad.addColorStop(0, `rgba(0,240,255,${ss.opacity})`);
+        grad.addColorStop(1, 'rgba(0,240,255,0)');
+        ctx.beginPath();
+        ctx.moveTo(ss.x, ss.y);
+        ctx.lineTo(ss.x + Math.cos(ss.angle) * ss.len, ss.y + Math.sin(ss.angle) * ss.len);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ss.x += Math.cos(ss.angle) * ss.speed;
+        ss.y += Math.sin(ss.angle) * ss.speed;
+        ss.opacity -= 0.015;
+        if (ss.opacity <= 0) shootingStars.splice(i, 1);
+      }
+      requestAnimationFrame(drawGalaxy);
+    }
+    drawGalaxy();
+    window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+
+    // ---- CURSOR ----
+    const co = document.getElementById('cursor-outer');
+    const ci = document.getElementById('cursor-inner');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; ci.style.left = mx+'px'; ci.style.top = my+'px'; });
+    (function animCursor() {
+      rx += (mx - rx) * 0.1; ry += (my - ry) * 0.1;
+      co.style.left = rx+'px'; co.style.top = ry+'px';
+      requestAnimationFrame(animCursor);
+    })();
+
+    // ---- TYPEWRITER ----
+    const texts = ['STUDENT 📚', 'CLASS TOPPER 🔥', 'CHESS PLAYER ♟️', 'SITAR PLAYER 🎵', 'SCIENCE LOVER 🔬', 'EXPLORER 🚀'];
+    let ti = 0, tj = 0, del = false;
+    const tel = document.getElementById('typewriter');
+    function tick() {
+      tel.textContent = texts[ti].substring(0, tj);
+      if (!del) { tj++; if (tj > texts[ti].length) { del = true; setTimeout(tick, 2000); return; } }
+      else { tj--; if (tj < 0) { del = false; ti = (ti + 1) % texts.length; tj = 0; setTimeout(tick, 400); return; } }
+      setTimeout(tick, del ? 40 : 80);
+    }
+    tick();
+
+    // ---- SCROLL REVEAL ----
+    const reveals = document.querySelectorAll('.reveal, .reveal-l, .reveal-r');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => obs.observe(el));
+
+    // ---- ACTIVE NAV ----
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      let cur = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+      });
+    });
+
+    // ---- NAV SCROLL ----
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.background = window.scrollY > 50 ? 'rgba(5,0,21,0.95)' : 'rgba(5,0,21,0.7)';
+    });
+  </script>
 </body>
 </html>
