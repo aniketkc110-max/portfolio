@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aniket Chaudhari</title>
+    <title>Aniket Chaudhari - Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -11,56 +11,81 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1a2849 100%);
             color: #e2e8f0;
+            line-height: 1.6;
             min-height: 100vh;
-            padding: 60px 20px;
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
         header {
-            text-align: center;
-            margin-bottom: 80px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid rgba(100, 116, 139, 0.3);
+            padding: 80px 0 60px;
+            border-bottom: 2px solid rgba(37, 99, 235, 0.3);
         }
 
         h1 {
-            font-size: 56px;
-            font-weight: 300;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #60a5fa, #f87171);
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #60a5fa, #ef4444);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .subtitle {
-            font-size: 18px;
-            color: #94a3b8;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        .tagline {
+            font-size: 1.3rem;
+            color: #cbd5e1;
             font-weight: 300;
-            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .header-info {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+            color: #94a3b8;
+        }
+
+        .header-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         section {
-            margin-bottom: 70px;
+            margin: 80px 0;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h2 {
-            font-size: 24px;
-            font-weight: 400;
-            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
             color: #f1f5f9;
-            letter-spacing: 1px;
             position: relative;
             padding-bottom: 15px;
         }
@@ -71,115 +96,222 @@
             bottom: 0;
             left: 0;
             width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, #60a5fa, #f87171);
+            height: 3px;
+            background: linear-gradient(90deg, #2563eb, #ef4444);
+            border-radius: 2px;
         }
 
-        ul {
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlights {
+            background: rgba(37, 99, 235, 0.1);
+            border-left: 4px solid #2563eb;
+            padding: 25px;
+            border-radius: 8px;
             list-style: none;
         }
 
-        li {
-            font-size: 16px;
-            line-height: 2;
+        .highlights li {
+            padding: 10px 0;
             color: #cbd5e1;
-            padding-left: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        li::before {
-            content: '—';
-            margin-right: 12px;
-            color: #64748b;
+        .highlights li::before {
+            content: '→';
+            color: #2563eb;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
 
-        .info-grid {
+        .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            gap: 20px;
         }
 
-        .info-item {
-            border-left: 1px solid rgba(96, 165, 250, 0.3);
-            padding-left: 20px;
+        .skill-card {
+            background: rgba(37, 99, 235, 0.15);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: default;
         }
 
-        .info-label {
-            font-size: 12px;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 8px;
-            font-weight: 500;
+        .skill-card:hover {
+            background: rgba(37, 99, 235, 0.25);
+            border-color: rgba(37, 99, 235, 0.6);
+            transform: translateY(-4px);
         }
 
-        .info-value {
-            font-size: 18px;
-            color: #e2e8f0;
-            font-weight: 300;
+        .skill-card h3 {
+            color: #60a5fa;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
 
-        .contact-info {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(100, 116, 139, 0.2);
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .achievement-card {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(37, 99, 235, 0.1) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.3);
             padding: 30px;
-            margin-top: 50px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card::before {
+            content: '★';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 80px;
+            color: rgba(239, 68, 68, 0.1);
+            font-weight: bold;
+        }
+
+        .achievement-card h3 {
+            color: #ef4444;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .achievement-card p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(239, 68, 68, 0.1) 100%);
+            border: 2px solid rgba(37, 99, 235, 0.3);
+            padding: 50px;
+            border-radius: 16px;
+            text-align: center;
         }
 
         .contact-item {
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .contact-item:last-child {
-            margin-bottom: 0;
+            margin: 25px 0;
         }
 
         .contact-label {
-            font-size: 14px;
             color: #94a3b8;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 8px;
         }
 
         .contact-value {
+            color: #f1f5f9;
+            font-size: 1.15rem;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        a {
             color: #60a5fa;
             text-decoration: none;
-            font-size: 16px;
+            transition: color 0.2s ease;
         }
 
-        .contact-value:hover {
-            color: #f87171;
+        a:hover {
+            color: #ef4444;
         }
 
-        @media (max-width: 600px) {
+        footer {
+            border-top: 2px solid rgba(37, 99, 235, 0.3);
+            padding: 40px 0;
+            margin-top: 80px;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
             h1 {
-                font-size: 36px;
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .header-info {
+                gap: 15px;
+                font-size: 0.85rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
 
             h2 {
-                font-size: 20px;
+                font-size: 1.6rem;
             }
 
-            body {
-                padding: 40px 15px;
-            }
-
-            header {
-                margin-bottom: 50px;
-                padding-bottom: 30px;
+            .contact-section {
+                padding: 30px;
             }
 
             section {
-                margin-bottom: 50px;
+                margin: 50px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
             }
 
-            .contact-item {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .header-info {
                 flex-direction: column;
-                align-items: flex-start;
                 gap: 8px;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .achievements {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -188,69 +320,94 @@
     <div class="container">
         <header>
             <h1>Aniket Chaudhari</h1>
-            <div class="subtitle">Student • Achiever • Developer</div>
+            <p class="tagline">Student • Learner • Developer</p>
+            <div class="header-info">
+                <span>7th Standard</span>
+                <span>13 years old</span>
+                <span>Amba School for Excellence</span>
+            </div>
         </header>
 
-        <div class="info-grid">
-            <div class="info-item">
-                <div class="info-label">Age</div>
-                <div class="info-value">13 years</div>
+        <section id="about">
+            <h2>About</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Curious learner passionate about Mathematics and Science. I love reading books and comics, exploring new ideas through educational content, and applying knowledge in real-world scenarios.</p>
+                    <p>I believe hard work and discipline are essential for success. I am committed to becoming a well-rounded individual and making meaningful contributions to society.</p>
+                </div>
+                <ul class="highlights">
+                    <li>Mathematics & Science</li>
+                    <li>Reading & Writing</li>
+                    <li>Chess & Cricket</li>
+                    <li>Sitar</li>
+                    <li>Educational Videos</li>
+                    <li>School Projects</li>
+                </ul>
             </div>
-            <div class="info-item">
-                <div class="info-label">Standard</div>
-                <div class="info-value">7th</div>
-            </div>
-            <div class="info-item">
-                <div class="info-label">School</div>
-                <div class="info-value">Amba School for Excellence</div>
-            </div>
-        </div>
+        </section>
 
-        <section>
+        <section id="skills">
+            <h2>Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Leadership</h3>
+                </div>
+                <div class="skill-card">
+                    <h3>Communication</h3>
+                </div>
+                <div class="skill-card">
+                    <h3>Problem-Solving</h3>
+                </div>
+                <div class="skill-card">
+                    <h3>Teamwork</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements">
             <h2>Achievements</h2>
-            <ul>
-                <li>1st in Jawahar Navoday Exam</li>
-                <li>1st in Vikas Vartul GKIQ Exam</li>
-                <li>Common Entrance Test Participant</li>
-                <li>School Annual Day Participant</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Skills</h2>
-            <ul>
-                <li>Leadership</li>
-                <li>Communication</li>
-                <li>Problem-Solving</li>
-                <li>Teamwork</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Interests</h2>
-            <ul>
-                <li>Chess</li>
-                <li>Cricket</li>
-                <li>Sitar</li>
-                <li>Reading</li>
-                <li>Maths</li>
-                <li>Science</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Contact</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span class="contact-label">Email</span>
-                    <a href="mailto:aniketkc110@gmail.com" class="contact-value">aniketkc110@gmail.com</a>
+            <div class="achievements">
+                <div class="achievement-card">
+                    <h3>Jawahar Navodaya Vidyalaya Exam</h3>
+                    <p>1st Place</p>
                 </div>
-                <div class="contact-item">
-                    <span class="contact-label">Phone</span>
-                    <span class="contact-value">9925641188 • 9727825424</span>
+                <div class="achievement-card">
+                    <h3>Vikas Vartul GKIQ</h3>
+                    <p>1st Place</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>Common Entrance Test</h3>
+                    <p>Participant</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>School Annual Day</h3>
+                    <p>Participant</p>
                 </div>
             </div>
         </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="contact-section">
+                <div class="contact-item">
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">
+                        <a href="mailto:aniketkc110@gmail.com">aniketkc110@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Phone</div>
+                    <div class="contact-value">
+                        <a href="tel:+919925641188">+91 9925641188</a><br>
+                        <a href="tel:+919727825424">+91 9727825424</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Portfolio of Aniket Chaudhari © 2026</p>
+        </footer>
     </div>
 </body>
 </html>
