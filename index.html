@@ -17,8 +17,8 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1a2849 100%);
-            color: #e2e8f0;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2f4a 100%);
+            color: #ffffff;
             line-height: 1.6;
             min-height: 100vh;
         }
@@ -31,14 +31,18 @@
 
         header {
             padding: 80px 0 60px;
-            border-bottom: 2px solid rgba(37, 99, 235, 0.3);
+            border-bottom: 3px solid rgba(135, 206, 235, 0.4);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
         }
 
-        h1 {
+        .header-left h1 {
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 10px;
-            background: linear-gradient(135deg, #60a5fa, #ef4444);
+            background: linear-gradient(135deg, #87ceeb, #ffa500);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -46,9 +50,10 @@
 
         .tagline {
             font-size: 1.3rem;
-            color: #cbd5e1;
+            color: #87ceeb;
             font-weight: 300;
             margin-bottom: 30px;
+            letter-spacing: 1px;
         }
 
         .header-info {
@@ -56,13 +61,44 @@
             gap: 30px;
             flex-wrap: wrap;
             font-size: 0.95rem;
-            color: #94a3b8;
+            color: #ffffff;
         }
 
         .header-info span {
             display: flex;
             align-items: center;
             gap: 8px;
+        }
+
+        .header-info span::before {
+            content: '▸';
+            color: #ffa500;
+            font-weight: bold;
+        }
+
+        .profile-photo {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            border: 4px solid #87ceeb;
+            box-shadow: 0 20px 60px rgba(135, 206, 235, 0.3);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.2), rgba(255, 165, 0, 0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: translateY(-10px);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
         }
 
         section {
@@ -85,7 +121,7 @@
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 40px;
-            color: #f1f5f9;
+            color: #ffffff;
             position: relative;
             padding-bottom: 15px;
         }
@@ -95,9 +131,9 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #2563eb, #ef4444);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #87ceeb, #ffa500);
             border-radius: 2px;
         }
 
@@ -110,7 +146,7 @@
 
         .about-text {
             font-size: 1.05rem;
-            color: #cbd5e1;
+            color: #ffffff;
             line-height: 1.8;
         }
 
@@ -119,8 +155,8 @@
         }
 
         .highlights {
-            background: rgba(37, 99, 235, 0.1);
-            border-left: 4px solid #2563eb;
+            background: rgba(135, 206, 235, 0.15);
+            border-left: 5px solid #87ceeb;
             padding: 25px;
             border-radius: 8px;
             list-style: none;
@@ -128,17 +164,17 @@
 
         .highlights li {
             padding: 10px 0;
-            color: #cbd5e1;
+            color: #ffffff;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
         .highlights li::before {
-            content: '→';
-            color: #2563eb;
+            content: '★';
+            color: #ffa500;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         .skills-grid {
@@ -148,8 +184,8 @@
         }
 
         .skill-card {
-            background: rgba(37, 99, 235, 0.15);
-            border: 1px solid rgba(37, 99, 235, 0.3);
+            background: rgba(135, 206, 235, 0.15);
+            border: 2px solid #87ceeb;
             padding: 30px 20px;
             border-radius: 12px;
             text-align: center;
@@ -158,13 +194,14 @@
         }
 
         .skill-card:hover {
-            background: rgba(37, 99, 235, 0.25);
-            border-color: rgba(37, 99, 235, 0.6);
+            background: rgba(135, 206, 235, 0.25);
+            border-color: #ffa500;
             transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(135, 206, 235, 0.2);
         }
 
         .skill-card h3 {
-            color: #60a5fa;
+            color: #ffffff;
             font-size: 1.3rem;
             font-weight: 600;
         }
@@ -176,12 +213,18 @@
         }
 
         .achievement-card {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(37, 99, 235, 0.1) 100%);
-            border: 1px solid rgba(239, 68, 68, 0.3);
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.15) 0%, rgba(255, 165, 0, 0.1) 100%);
+            border: 2px solid #87ceeb;
             padding: 30px;
             border-radius: 12px;
             position: relative;
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            border-color: #ffa500;
+            box-shadow: 0 10px 30px rgba(135, 206, 235, 0.2);
         }
 
         .achievement-card::before {
@@ -190,12 +233,12 @@
             top: -20px;
             right: -20px;
             font-size: 80px;
-            color: rgba(239, 68, 68, 0.1);
+            color: rgba(255, 165, 0, 0.15);
             font-weight: bold;
         }
 
         .achievement-card h3 {
-            color: #ef4444;
+            color: #ffa500;
             font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 8px;
@@ -204,15 +247,15 @@
         }
 
         .achievement-card p {
-            color: #cbd5e1;
+            color: #ffffff;
             font-size: 0.95rem;
             position: relative;
             z-index: 1;
         }
 
         .contact-section {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(239, 68, 68, 0.1) 100%);
-            border: 2px solid rgba(37, 99, 235, 0.3);
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.2) 0%, rgba(255, 165, 0, 0.15) 100%);
+            border: 3px solid #87ceeb;
             padding: 50px;
             border-radius: 16px;
             text-align: center;
@@ -223,41 +266,47 @@
         }
 
         .contact-label {
-            color: #94a3b8;
+            color: #ffa500;
             font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             margin-bottom: 8px;
+            font-weight: 600;
         }
 
         .contact-value {
-            color: #f1f5f9;
+            color: #ffffff;
             font-size: 1.15rem;
             font-weight: 500;
             word-break: break-all;
         }
 
         a {
-            color: #60a5fa;
+            color: #87ceeb;
             text-decoration: none;
             transition: color 0.2s ease;
         }
 
         a:hover {
-            color: #ef4444;
+            color: #ffa500;
         }
 
         footer {
-            border-top: 2px solid rgba(37, 99, 235, 0.3);
+            border-top: 2px solid rgba(135, 206, 235, 0.3);
             padding: 40px 0;
             margin-top: 80px;
             text-align: center;
-            color: #64748b;
+            color: #87ceeb;
             font-size: 0.9rem;
         }
 
         @media (max-width: 768px) {
-            h1 {
+            header {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .header-left h1 {
                 font-size: 2.5rem;
             }
 
@@ -268,6 +317,12 @@
             .header-info {
                 gap: 15px;
                 font-size: 0.85rem;
+            }
+
+            .profile-photo {
+                width: 250px;
+                height: 250px;
+                margin: 0 auto;
             }
 
             .about-content {
@@ -293,13 +348,18 @@
                 padding: 0 15px;
             }
 
-            h1 {
+            .header-left h1 {
                 font-size: 2rem;
             }
 
             .header-info {
                 flex-direction: column;
                 gap: 8px;
+            }
+
+            .profile-photo {
+                width: 200px;
+                height: 200px;
             }
 
             h2 {
@@ -319,12 +379,19 @@
 <body>
     <div class="container">
         <header>
-            <h1>Aniket Chaudhari</h1>
-            <p class="tagline">Student • Learner • Developer</p>
-            <div class="header-info">
-                <span>7th Standard</span>
-                <span>13 years old</span>
-                <span>Amba School for Excellence</span>
+            <div class="header-left">
+                <h1>Aniket Chaudhari</h1>
+                <p class="tagline">Student • Learner • Developer</p>
+                <div class="header-info">
+                    <span>7th Standard</span>
+                    <span>13 years old</span>
+                    <span>Amba School for Excellence</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="profile-photo">
+                    <img src="photo.PNG" alt="Aniket Chaudhari">
+                </div>
             </div>
         </header>
 
@@ -332,16 +399,17 @@
             <h2>About</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Curious learner passionate about Mathematics and Science. I love reading books and comics, exploring new ideas through educational content, and applying knowledge in real-world scenarios.</p>
-                    <p>I believe hard work and discipline are essential for success. I am committed to becoming a well-rounded individual and making meaningful contributions to society.</p>
+                    <p>7th Standard Student</p>
+                    <p>13 Years Old</p>
+                    <p>Amba School for Excellence</p>
                 </div>
                 <ul class="highlights">
                     <li>Mathematics & Science</li>
+                    <li>Class Topper</li>
                     <li>Reading & Writing</li>
                     <li>Chess & Cricket</li>
                     <li>Sitar</li>
                     <li>Educational Videos</li>
-                    <li>School Projects</li>
                 </ul>
             </div>
         </section>
@@ -368,20 +436,20 @@
             <h2>Achievements</h2>
             <div class="achievements">
                 <div class="achievement-card">
-                    <h3>Jawahar Navodaya Vidyalaya Exam</h3>
-                    <p>1st Place</p>
+                    <h3>🥇 1st Place</h3>
+                    <p>Jawahar Navodaya Vidyalaya Exam</p>
                 </div>
                 <div class="achievement-card">
-                    <h3>Vikas Vartul GKIQ</h3>
-                    <p>1st Place</p>
+                    <h3>🥇 1st Place</h3>
+                    <p>Vikas Vartul GKIQ</p>
                 </div>
                 <div class="achievement-card">
-                    <h3>Common Entrance Test</h3>
-                    <p>Participant</p>
+                    <h3>🎖️ Participant</h3>
+                    <p>Common Entrance Test</p>
                 </div>
                 <div class="achievement-card">
-                    <h3>School Annual Day</h3>
-                    <p>Participant</p>
+                    <h3>🎭 Participant</h3>
+                    <p>School Annual Day</p>
                 </div>
             </div>
         </section>
@@ -390,23 +458,22 @@
             <h2>Contact</h2>
             <div class="contact-section">
                 <div class="contact-item">
-                    <div class="contact-label">Email</div>
+                    <div class="contact-label">📧 Email</div>
                     <div class="contact-value">
                         <a href="mailto:aniketkc110@gmail.com">aniketkc110@gmail.com</a>
                     </div>
                 </div>
                 <div class="contact-item">
-                    <div class="contact-label">Phone</div>
+                    <div class="contact-label">📱 Phone</div>
                     <div class="contact-value">
-                        <a href="tel:+919925641188">+91 9925641188</a><br>
-                        <a href="tel:+919727825424">+91 9727825424</a>
+                        +91 9925641188 | +91 9727825424
                     </div>
                 </div>
             </div>
         </section>
 
         <footer>
-            <p>Portfolio of Aniket Chaudhari © 2026</p>
+            <p>© 2026 Aniket Chaudhari Portfolio</p>
         </footer>
     </div>
 </body>
