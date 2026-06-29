@@ -21,10 +21,11 @@
             color: #ffffff;
             line-height: 1.6;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -36,16 +37,24 @@
             grid-template-columns: 1fr 1fr;
             gap: 50px;
             align-items: center;
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .header-left h1 {
             font-size: 3.5rem;
-            font-weight: 700;
+            font-weight: 900;
             margin-bottom: 10px;
             background: linear-gradient(135deg, #87ceeb, #ffa500);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            line-height: 1.1;
+            letter-spacing: -1px;
         }
 
         .tagline {
@@ -58,27 +67,29 @@
 
         .header-info {
             display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            font-size: 0.95rem;
-            color: #ffffff;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
         }
 
         .header-info span {
+            font-size: 1rem;
+            color: #ffffff;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .header-info span::before {
             content: '▸';
             color: #ffa500;
             font-weight: bold;
+            font-size: 1.2rem;
         }
 
         .profile-photo {
-            width: 300px;
-            height: 300px;
+            width: 320px;
+            height: 320px;
             border-radius: 20px;
             border: 4px solid #87ceeb;
             box-shadow: 0 20px 60px rgba(135, 206, 235, 0.3);
@@ -86,12 +97,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            margin: 0 auto;
             background: linear-gradient(135deg, rgba(135, 206, 235, 0.2), rgba(255, 165, 0, 0.2));
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
 
         .profile-photo:hover {
             transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(135, 206, 235, 0.4);
         }
 
         .profile-photo img {
@@ -102,24 +116,18 @@
         }
 
         section {
-            margin: 80px 0;
-            animation: fadeIn 0.6s ease-in-out;
+            margin: 100px 0;
+            animation: fadeIn 0.8s ease;
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h2 {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 800;
             margin-bottom: 40px;
             color: #ffffff;
             position: relative;
@@ -131,7 +139,7 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 80px;
+            width: 100px;
             height: 4px;
             background: linear-gradient(90deg, #87ceeb, #ffa500);
             border-radius: 2px;
@@ -147,7 +155,7 @@
         .about-text {
             font-size: 1.05rem;
             color: #ffffff;
-            line-height: 1.8;
+            line-height: 1.9;
         }
 
         .about-text p {
@@ -155,38 +163,39 @@
         }
 
         .highlights {
-            background: rgba(135, 206, 235, 0.15);
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.15), rgba(255, 165, 0, 0.1));
             border-left: 5px solid #87ceeb;
-            padding: 25px;
-            border-radius: 8px;
+            padding: 30px;
+            border-radius: 10px;
             list-style: none;
         }
 
         .highlights li {
-            padding: 10px 0;
+            padding: 12px 0;
             color: #ffffff;
             display: flex;
             align-items: center;
             gap: 12px;
+            font-size: 0.95rem;
         }
 
         .highlights li::before {
             content: '★';
             color: #ffa500;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
         }
 
         .skill-card {
             background: rgba(135, 206, 235, 0.15);
             border: 2px solid #87ceeb;
-            padding: 30px 20px;
+            padding: 30px 25px;
             border-radius: 12px;
             text-align: center;
             transition: all 0.3s ease;
@@ -196,26 +205,26 @@
         .skill-card:hover {
             background: rgba(135, 206, 235, 0.25);
             border-color: #ffa500;
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(135, 206, 235, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(135, 206, 235, 0.2);
         }
 
         .skill-card h3 {
             color: #ffffff;
             font-size: 1.3rem;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .achievements {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 25px;
         }
 
         .achievement-card {
             background: linear-gradient(135deg, rgba(135, 206, 235, 0.15) 0%, rgba(255, 165, 0, 0.1) 100%);
             border: 2px solid #87ceeb;
-            padding: 30px;
+            padding: 35px;
             border-radius: 12px;
             position: relative;
             overflow: hidden;
@@ -224,7 +233,8 @@
 
         .achievement-card:hover {
             border-color: #ffa500;
-            box-shadow: 0 10px 30px rgba(135, 206, 235, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(135, 206, 235, 0.2);
         }
 
         .achievement-card::before {
@@ -239,9 +249,9 @@
 
         .achievement-card h3 {
             color: #ffa500;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             position: relative;
             z-index: 1;
         }
@@ -261,8 +271,18 @@
             text-align: center;
         }
 
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #87ceeb, #ffa500);
+        }
+
         .contact-item {
-            margin: 25px 0;
+            margin: 30px 0;
         }
 
         .contact-label {
@@ -270,8 +290,9 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 8px;
-            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+            font-weight: 700;
         }
 
         .contact-value {
@@ -304,6 +325,7 @@
             header {
                 grid-template-columns: 1fr;
                 gap: 30px;
+                padding: 50px 0 40px;
             }
 
             .header-left h1 {
@@ -315,14 +337,12 @@
             }
 
             .header-info {
-                gap: 15px;
-                font-size: 0.85rem;
+                gap: 10px;
             }
 
             .profile-photo {
                 width: 250px;
                 height: 250px;
-                margin: 0 auto;
             }
 
             .about-content {
@@ -331,15 +351,15 @@
             }
 
             h2 {
-                font-size: 1.6rem;
+                font-size: 2rem;
             }
 
             .contact-section {
-                padding: 30px;
+                padding: 35px 25px;
             }
 
             section {
-                margin: 50px 0;
+                margin: 60px 0;
             }
         }
 
@@ -348,13 +368,21 @@
                 padding: 0 15px;
             }
 
+            header {
+                padding: 40px 0 30px;
+            }
+
             .header-left h1 {
                 font-size: 2rem;
             }
 
+            .tagline {
+                font-size: 1rem;
+            }
+
             .header-info {
-                flex-direction: column;
                 gap: 8px;
+                font-size: 0.9rem;
             }
 
             .profile-photo {
@@ -363,7 +391,7 @@
             }
 
             h2 {
-                font-size: 1.4rem;
+                font-size: 1.6rem;
             }
 
             .skills-grid {
@@ -384,13 +412,13 @@
                 <p class="tagline">Student • Learner • Developer</p>
                 <div class="header-info">
                     <span>7th Standard</span>
-                    <span>13 years old</span>
+                    <span>13 Years Old</span>
                     <span>Amba School for Excellence</span>
                 </div>
             </div>
             <div class="header-right">
                 <div class="profile-photo">
-                    <img src="photo.PNG" alt="Aniket Chaudhari">
+                    <img src="aniket_photo.PNG" alt="Aniket Chaudhari">
                 </div>
             </div>
         </header>
@@ -399,16 +427,15 @@
             <h2>About</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>7th Standard Student</p>
-                    <p>13 Years Old</p>
-                    <p>Amba School for Excellence</p>
+                    <p>Curious learner passionate about Mathematics and Science. I love reading books and comics, exploring new ideas through educational content, and applying knowledge in real-world scenarios.</p>
+                    <p>I believe hard work and discipline are essential for success. I am committed to becoming a well-rounded individual and making meaningful contributions to society.</p>
                 </div>
                 <ul class="highlights">
                     <li>Mathematics & Science</li>
                     <li>Class Topper</li>
                     <li>Reading & Writing</li>
                     <li>Chess & Cricket</li>
-                    <li>Sitar</li>
+                    <li>Sitar Player</li>
                     <li>Educational Videos</li>
                 </ul>
             </div>
@@ -458,13 +485,13 @@
             <h2>Contact</h2>
             <div class="contact-section">
                 <div class="contact-item">
-                    <div class="contact-label">📧 Email</div>
+                    <span class="contact-label">📧 Email</span>
                     <div class="contact-value">
                         <a href="mailto:aniketkc110@gmail.com">aniketkc110@gmail.com</a>
                     </div>
                 </div>
                 <div class="contact-item">
-                    <div class="contact-label">📱 Phone</div>
+                    <span class="contact-label">📱 Phone</span>
                     <div class="contact-value">
                         +91 9925641188 | +91 9727825424
                     </div>
