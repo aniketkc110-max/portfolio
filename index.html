@@ -1,507 +1,847 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aniket Chaudhari - Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aniket Chaudhari · Portfolio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Outfit:wght@200;300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        html {
-            scroll-behavior: smooth;
-        }
+<style>
+  :root{
+    --bg:#04030d;
+    --bg2:#0a0820;
+    --accent1:#7b2fff;   /* violet */
+    --accent2:#00e5ff;   /* cyan   */
+    --accent3:#ff2bd6;   /* magenta */
+    --accent4:#ffd166;   /* gold   */
+    --text:#e8e8ff;
+    --muted:#9aa0c0;
+    --glass:rgba(255,255,255,0.04);
+    --glass-border:rgba(255,255,255,0.10);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Outfit',sans-serif;
+    overflow-x:hidden;
+    cursor:none;
+  }
+  /* Cosmic background */
+  #cosmos{
+    position:fixed; inset:0; z-index:-3;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(123,47,255,0.22), transparent 40%),
+      radial-gradient(circle at 85% 30%, rgba(0,229,255,0.18), transparent 45%),
+      radial-gradient(circle at 50% 80%, rgba(255,43,214,0.18), transparent 45%),
+      linear-gradient(180deg,#04030d 0%, #07061a 50%, #04030d 100%);
+  }
+  #stars{position:fixed; inset:0; z-index:-2; pointer-events:none}
+  .nebula{
+    position:fixed; border-radius:50%; filter:blur(80px);
+    opacity:.45; z-index:-2; pointer-events:none;
+    animation:floatNebula 18s ease-in-out infinite;
+  }
+  @keyframes floatNebula{
+    0%,100%{transform:translate(0,0) scale(1)}
+    50%{transform:translate(40px,-30px) scale(1.1)}
+  }
+  /* Custom cursor */
+  .cursor-dot, .cursor-ring{
+    position:fixed; top:0; left:0; border-radius:50%;
+    pointer-events:none; z-index:9999; transform:translate(-50%,-50%);
+    transition:transform .15s ease, width .2s, height .2s, background .2s;
+  }
+  .cursor-dot{width:6px;height:6px;background:var(--accent2);box-shadow:0 0 12px var(--accent2)}
+  .cursor-ring{width:38px;height:38px;border:1px solid rgba(0,229,255,.6)}
+  .cursor-ring.hover{width:70px;height:70px;border-color:var(--accent3);background:rgba(255,43,214,.08)}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #0a1628 0%, #1a2f4a 100%);
-            color: #ffffff;
-            line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+  h1,h2,h3,.display{font-family:'Orbitron',sans-serif; letter-spacing:.04em}
+  .gradient-text{
+    background:linear-gradient(110deg,var(--accent2),var(--accent3),var(--accent4));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    background-size:200% 200%; animation:shift 6s ease infinite;
+  }
+  @keyframes shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+  .glass{
+    background:var(--glass);
+    border:1px solid var(--glass-border);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+  }
+  .glass::before{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.06) 50%,transparent 70%);
+    transform:translateX(-100%); transition:transform .8s;
+  }
+  .glass:hover::before{transform:translateX(100%)}
 
-        header {
-            padding: 80px 0 60px;
-            border-bottom: 3px solid rgba(135, 206, 235, 0.4);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-            animation: slideDown 0.8s ease;
-        }
+  .glow-violet{box-shadow:0 0 40px rgba(123,47,255,.35), inset 0 0 20px rgba(123,47,255,.08)}
+  .glow-cyan{box-shadow:0 0 40px rgba(0,229,255,.35), inset 0 0 20px rgba(0,229,255,.08)}
+  .glow-magenta{box-shadow:0 0 40px rgba(255,43,214,.35), inset 0 0 20px rgba(255,43,214,.08)}
+  .glow-gold{box-shadow:0 0 40px rgba(255,209,102,.35), inset 0 0 20px rgba(255,209,102,.08)}
 
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+  /* Reveal animation */
+  .reveal{opacity:0; transform:translateY(40px); transition:opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1; transform:none}
 
-        .header-left h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #87ceeb, #ffa500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            letter-spacing: -1px;
-        }
+  .chip{
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding:.55rem 1.1rem; border-radius:999px;
+    background:linear-gradient(120deg, rgba(123,47,255,.12), rgba(0,229,255,.08));
+    border:1px solid rgba(255,255,255,.12);
+    font-size:.85rem; font-weight:500;
+    transition:.3s;
+  }
+  .chip:hover{transform:translateY(-3px); border-color:var(--accent2); box-shadow:0 6px 24px rgba(0,229,255,.25)}
 
-        .tagline {
-            font-size: 1.3rem;
-            color: #87ceeb;
-            font-weight: 300;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-        }
+  .nav-link{position:relative; padding:.4rem .2rem; color:var(--muted); transition:.3s}
+  .nav-link::after{content:""; position:absolute; left:0; bottom:-4px; height:2px; width:0; background:linear-gradient(90deg,var(--accent2),var(--accent3)); transition:.3s}
+  .nav-link:hover{color:#fff}
+  .nav-link:hover::after{width:100%}
 
-        .header-info {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 30px;
-        }
+  .tilt{transition:transform .25s ease; transform-style:preserve-3d}
+  .tilt:hover{transform:perspective(1000px) rotateX(6deg) rotateY(-6deg) translateY(-6px)}
 
-        .header-info span {
-            font-size: 1rem;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+  .ring-orbit{
+    position:absolute; border:1px dashed rgba(255,255,255,.15);
+    border-radius:50%;
+    animation:spin 22s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
 
-        .header-info span::before {
-            content: '▸';
-            color: #ffa500;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
+  .progress-bar{height:6px; border-radius:999px; background:rgba(255,255,255,.08); overflow:hidden; position:relative}
+  .progress-bar > span{
+    display:block; height:100%; border-radius:999px;
+    background:linear-gradient(90deg,var(--accent2),var(--accent3));
+    width:0; transition:width 1.6s cubic-bezier(.2,.8,.2,1);
+    box-shadow:0 0 16px rgba(0,229,255,.6);
+  }
+  .reveal.in .progress-bar > span{width:var(--p)}
 
-        .profile-photo {
-            width: 320px;
-            height: 320px;
-            border-radius: 20px;
-            border: 4px solid #87ceeb;
-            box-shadow: 0 20px 60px rgba(135, 206, 235, 0.3);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            background: linear-gradient(135deg, rgba(135, 206, 235, 0.2), rgba(255, 165, 0, 0.2));
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-        }
+  .scroll-indicator{
+    position:absolute; bottom:24px; left:50%; transform:translateX(-50%);
+    width:24px; height:40px; border:2px solid rgba(255,255,255,.3); border-radius:14px;
+    display:flex; justify-content:center; padding-top:6px;
+  }
+  .scroll-indicator span{width:3px; height:8px; background:var(--accent2); border-radius:2px; animation:scrollDown 1.6s infinite}
+  @keyframes scrollDown{0%{transform:translateY(0);opacity:1}100%{transform:translateY(14px);opacity:0}}
 
-        .profile-photo:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 80px rgba(135, 206, 235, 0.4);
-        }
+  .section-tag{
+    display:inline-block; padding:.35rem .9rem; border-radius:999px;
+    background:rgba(0,229,255,.08); border:1px solid rgba(0,229,255,.3);
+    color:var(--accent2); font-size:.72rem; letter-spacing:.3em; text-transform:uppercase;
+    font-family:'Space Grotesk',sans-serif;
+  }
 
-        .profile-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 16px;
-        }
+  .project-card{
+    position:relative; padding:2rem; border-radius:24px;
+    background:linear-gradient(160deg, rgba(123,47,255,.08), rgba(0,229,255,.04));
+    border:1px solid rgba(255,255,255,.08);
+    overflow:hidden;
+  }
+  .project-card::before{
+    content:""; position:absolute; top:-50%; right:-50%; width:200%; height:200%;
+    background:radial-gradient(circle, rgba(255,43,214,.12), transparent 60%);
+    opacity:0; transition:.6s;
+  }
+  .project-card:hover::before{opacity:1}
+  .project-card:hover{transform:translateY(-6px); border-color:rgba(255,43,214,.3)}
 
-        section {
-            margin: 100px 0;
-            animation: fadeIn 0.8s ease;
-        }
+  .number-badge{
+    font-family:'Orbitron',sans-serif; font-size:5rem; font-weight:900;
+    background:linear-gradient(180deg, rgba(255,255,255,.15), transparent);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    line-height:1; letter-spacing:-.05em;
+  }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+  .achievement-card{
+    position:relative; padding:1.5rem; border-radius:18px;
+    background:linear-gradient(145deg, rgba(255,209,102,.06), rgba(255,43,214,.04));
+    border:1px solid rgba(255,209,102,.2);
+    transition:.4s;
+  }
+  .achievement-card:hover{transform:translateY(-4px) scale(1.02); border-color:var(--accent4); box-shadow:0 10px 40px rgba(255,209,102,.2)}
 
-        h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 40px;
-            color: #ffffff;
-            position: relative;
-            padding-bottom: 15px;
-        }
+  .timeline-dot{
+    width:14px; height:14px; border-radius:50%;
+    background:var(--accent2); box-shadow:0 0 16px var(--accent2);
+    position:relative;
+  }
+  .timeline-line{width:2px; background:linear-gradient(180deg, var(--accent2), var(--accent3), transparent)}
 
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, #87ceeb, #ffa500);
-            border-radius: 2px;
-        }
+  .float-anim{animation:floatY 4s ease-in-out infinite}
+  @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
-        }
+  .btn-cosmic{
+    position:relative; display:inline-flex; align-items:center; gap:.7rem;
+    padding:.9rem 1.8rem; border-radius:999px; font-weight:600;
+    background:linear-gradient(110deg,var(--accent1),var(--accent3));
+    color:#fff; text-decoration:none; overflow:hidden;
+    box-shadow:0 10px 40px rgba(123,47,255,.45);
+    transition:.3s;
+  }
+  .btn-cosmic:hover{transform:translateY(-3px); box-shadow:0 14px 50px rgba(255,43,214,.55)}
+  .btn-cosmic::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(110deg,var(--accent2),var(--accent4));
+    opacity:0; transition:.4s;
+  }
+  .btn-cosmic:hover::after{opacity:1}
+  .btn-cosmic span{position:relative; z-index:1}
 
-        .about-text {
-            font-size: 1.05rem;
-            color: #ffffff;
-            line-height: 1.9;
-        }
+  .btn-ghost{
+    display:inline-flex; align-items:center; gap:.7rem;
+    padding:.9rem 1.8rem; border-radius:999px; font-weight:500;
+    border:1px solid rgba(255,255,255,.2); color:#fff; text-decoration:none;
+    transition:.3s;
+  }
+  .btn-ghost:hover{border-color:var(--accent2); box-shadow:0 6px 30px rgba(0,229,255,.25)}
 
-        .about-text p {
-            margin-bottom: 20px;
-        }
+  .footer-grid-bg{
+    background-image:
+      linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size:40px 40px;
+  }
 
-        .highlights {
-            background: linear-gradient(135deg, rgba(135, 206, 235, 0.15), rgba(255, 165, 0, 0.1));
-            border-left: 5px solid #87ceeb;
-            padding: 30px;
-            border-radius: 10px;
-            list-style: none;
-        }
+  /* hide cursor on small screens */
+  @media (max-width: 768px){
+    body{cursor:auto}
+    .cursor-dot,.cursor-ring{display:none}
+  }
 
-        .highlights li {
-            padding: 12px 0;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.95rem;
-        }
-
-        .highlights li::before {
-            content: '★';
-            color: #ffa500;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .skill-card {
-            background: rgba(135, 206, 235, 0.15);
-            border: 2px solid #87ceeb;
-            padding: 30px 25px;
-            border-radius: 12px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-
-        .skill-card:hover {
-            background: rgba(135, 206, 235, 0.25);
-            border-color: #ffa500;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(135, 206, 235, 0.2);
-        }
-
-        .skill-card h3 {
-            color: #ffffff;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-
-        .achievements {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-        }
-
-        .achievement-card {
-            background: linear-gradient(135deg, rgba(135, 206, 235, 0.15) 0%, rgba(255, 165, 0, 0.1) 100%);
-            border: 2px solid #87ceeb;
-            padding: 35px;
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .achievement-card:hover {
-            border-color: #ffa500;
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(135, 206, 235, 0.2);
-        }
-
-        .achievement-card::before {
-            content: '★';
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            font-size: 80px;
-            color: rgba(255, 165, 0, 0.15);
-            font-weight: bold;
-        }
-
-        .achievement-card h3 {
-            color: #ffa500;
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .achievement-card p {
-            color: #ffffff;
-            font-size: 0.95rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-section {
-            background: linear-gradient(135deg, rgba(135, 206, 235, 0.2) 0%, rgba(255, 165, 0, 0.15) 100%);
-            border: 3px solid #87ceeb;
-            padding: 50px;
-            border-radius: 16px;
-            text-align: center;
-        }
-
-        .contact-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #87ceeb, #ffa500);
-        }
-
-        .contact-item {
-            margin: 30px 0;
-        }
-
-        .contact-label {
-            color: #ffa500;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            display: block;
-            font-weight: 700;
-        }
-
-        .contact-value {
-            color: #ffffff;
-            font-size: 1.15rem;
-            font-weight: 500;
-            word-break: break-all;
-        }
-
-        a {
-            color: #87ceeb;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        a:hover {
-            color: #ffa500;
-        }
-
-        footer {
-            border-top: 2px solid rgba(135, 206, 235, 0.3);
-            padding: 40px 0;
-            margin-top: 80px;
-            text-align: center;
-            color: #87ceeb;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            header {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                padding: 50px 0 40px;
-            }
-
-            .header-left h1 {
-                font-size: 2.5rem;
-            }
-
-            .tagline {
-                font-size: 1.1rem;
-            }
-
-            .header-info {
-                gap: 10px;
-            }
-
-            .profile-photo {
-                width: 250px;
-                height: 250px;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            .contact-section {
-                padding: 35px 25px;
-            }
-
-            section {
-                margin: 60px 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
-            }
-
-            header {
-                padding: 40px 0 30px;
-            }
-
-            .header-left h1 {
-                font-size: 2rem;
-            }
-
-            .tagline {
-                font-size: 1rem;
-            }
-
-            .header-info {
-                gap: 8px;
-                font-size: 0.9rem;
-            }
-
-            .profile-photo {
-                width: 200px;
-                height: 200px;
-            }
-
-            h2 {
-                font-size: 1.6rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .achievements {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  ::selection{background:rgba(255,43,214,.4); color:#fff}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#04030d}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--accent1),var(--accent3)); border-radius:10px}
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="header-left">
-                <h1>Aniket Chaudhari</h1>
-                <p class="tagline">Student • Learner • Developer</p>
-                <div class="header-info">
-                    <span>7th Standard</span>
-                    <span>13 Years Old</span>
-                    <span>Amba School for Excellence</span>
-                </div>
-            </div>
-            <div class="header-right">
-                <div class="profile-photo">
-                    <img src="aniket_photo.PNG" alt="Aniket Chaudhari">
-                </div>
-            </div>
-        </header>
 
-        <section id="about">
-            <h2>About</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Curious learner passionate about Mathematics and Science. I love reading books and comics, exploring new ideas through educational content, and applying knowledge in real-world scenarios.</p>
-                    <p>I believe hard work and discipline are essential for success. I am committed to becoming a well-rounded individual and making meaningful contributions to society.</p>
-                </div>
-                <ul class="highlights">
-                    <li>Mathematics & Science</li>
-                    <li>Class Topper</li>
-                    <li>Reading & Writing</li>
-                    <li>Chess & Cricket</li>
-                    <li>Sitar Player</li>
-                    <li>Educational Videos</li>
-                </ul>
-            </div>
-        </section>
+<!-- Cosmic layers -->
+<div id="cosmos"></div>
+<canvas id="stars"></canvas>
+<div class="nebula" style="width:380px;height:380px;background:#7b2fff;top:10%;left:-100px"></div>
+<div class="nebula" style="width:300px;height:300px;background:#00e5ff;top:50%;right:-80px;animation-delay:-6s"></div>
+<div class="nebula" style="width:340px;height:340px;background:#ff2bd6;bottom:5%;left:30%;animation-delay:-12s"></div>
 
-        <section id="skills">
-            <h2>Skills & Expertise</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>Leadership</h3>
-                </div>
-                <div class="skill-card">
-                    <h3>Communication</h3>
-                </div>
-                <div class="skill-card">
-                    <h3>Problem-Solving</h3>
-                </div>
-                <div class="skill-card">
-                    <h3>Teamwork</h3>
-                </div>
-            </div>
-        </section>
+<!-- Cursor -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
 
-        <section id="achievements">
-            <h2>Achievements</h2>
-            <div class="achievements">
-                <div class="achievement-card">
-                    <h3>🥇 1st Place</h3>
-                    <p>Jawahar Navodaya Vidyalaya Exam</p>
-                </div>
-                <div class="achievement-card">
-                    <h3>🥇 1st Place</h3>
-                    <p>Vikas Vartul GKIQ</p>
-                </div>
-                <div class="achievement-card">
-                    <h3>🎖️ Participant</h3>
-                    <p>Common Entrance Test</p>
-                </div>
-                <div class="achievement-card">
-                    <h3>🎭 Participant</h3>
-                    <p>School Annual Day</p>
-                </div>
-            </div>
-        </section>
+<!-- ============ NAV ============ -->
+<nav class="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex items-center justify-between backdrop-blur-md bg-[rgba(4,3,13,.5)] border-b border-white/5">
+  <a href="#home" class="flex items-center gap-3">
+    <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-violet-500 via-cyan-400 to-pink-500 flex items-center justify-center font-black text-black" style="font-family:'Orbitron'">A</div>
+    <span class="font-semibold tracking-wider text-sm" style="font-family:'Orbitron'">ANIKET.C</span>
+  </a>
+  <div class="hidden md:flex items-center gap-8 text-sm">
+    <a href="#about" class="nav-link">About</a>
+    <a href="#journey" class="nav-link">Journey</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#achievements" class="nav-link">Achievements</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </div>
+  <a href="#contact" class="hidden md:inline-flex items-center gap-2 text-xs px-4 py-2 rounded-full border border-cyan-400/40 text-cyan-300 hover:bg-cyan-400/10 transition">
+    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span> Available
+  </a>
+</nav>
 
-        <section id="contact">
-            <h2>Contact</h2>
-            <div class="contact-section">
-                <div class="contact-item">
-                    <span class="contact-label">📧 Email</span>
-                    <div class="contact-value">
-                        <a href="mailto:aniketkc110@gmail.com">aniketkc110@gmail.com</a>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-label">📱 Phone</span>
-                    <div class="contact-value">
-                        +91 9925641188 | +91 9727825424
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- ============ HERO ============ -->
+<header id="home" class="relative min-h-screen flex items-center justify-center px-6 md:px-12 pt-24 pb-12">
+  <!-- Orbit rings -->
+  <div class="ring-orbit" style="width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+  <div class="ring-orbit" style="width:850px;height:850px;top:50%;left:50%;transform:translate(-50%,-50%);animation-duration:40s;animation-direction:reverse"></div>
+  <div class="ring-orbit" style="width:1100px;height:1100px;top:50%;left:50%;transform:translate(-50%,-50%);animation-duration:60s"></div>
 
-        <footer>
-            <p>© 2026 Aniket Chaudhari Portfolio</p>
-        </footer>
+  <div class="relative z-10 max-w-6xl w-full grid md:grid-cols-2 gap-12 items-center">
+    <!-- Left text -->
+    <div class="reveal">
+      <div class="section-tag mb-6">Student · Learner · Developer</div>
+      <h1 class="text-5xl md:text-7xl font-black leading-none mb-4">
+        <span class="block text-white/90">ANIKET</span>
+        <span class="block gradient-text">CHAUDHARI</span>
+      </h1>
+      <p class="text-lg text-[var(--muted)] max-w-md mb-8" style="font-family:'Space Grotesk'">
+        Curious learner passionate about Mathematics and Science — committed to becoming a well-rounded individual and making meaningful contributions to society.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#projects" class="btn-cosmic"><span>Explore Work</span><i class="fas fa-arrow-right"></i></a>
+        <a href="#contact" class="btn-ghost"><i class="fas fa-paper-plane"></i><span>Get in Touch</span></a>
+      </div>
+
+      <!-- mini stats -->
+      <div class="grid grid-cols-3 gap-4 mt-12 max-w-md">
+        <div>
+          <div class="text-3xl font-black gradient-text" style="font-family:'Orbitron'">13</div>
+          <div class="text-xs text-[var(--muted)] tracking-widest mt-1">YEARS</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black gradient-text" style="font-family:'Orbitron'">8TH</div>
+          <div class="text-xs text-[var(--muted)] tracking-widest mt-1">STANDARD</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black gradient-text" style="font-family:'Orbitron'">∞</div>
+          <div class="text-xs text-[var(--muted)] tracking-widest mt-1">FOR EXCELLENCE</div>
+        </div>
+      </div>
     </div>
+
+    <!-- Right photo -->
+    <div class="reveal flex justify-center md:justify-end">
+      <div class="relative float-anim">
+        <div class="absolute -inset-6 rounded-full bg-gradient-to-tr from-violet-600 via-cyan-400 to-pink-500 blur-2xl opacity-50"></div>
+        <div class="relative w-72 h-72 md:w-96 md:h-96 rounded-full p-[3px] bg-gradient-to-tr from-violet-500 via-cyan-400 to-pink-500">
+          <div class="w-full h-full rounded-full overflow-hidden bg-black/40 backdrop-blur-sm">
+            <img src="https://z-cdn-media.chatglm.cn/files/7be5f2a8-0001-498c-9c91-f457adb8c530.PNG?auth_key=1882813015-53228ab1c75f456bb01211d475df5a17-0-cc4869f8ec4882a43153c30cff5a1f9d" alt="Aniket Chaudhari" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=&quot;w-full h-full flex items-center justify-center text-6xl font-black text-white/30&quot; style=&quot;font-family:Orbitron&quot;>AC</div>'"/>
+          </div>
+        </div>
+        <!-- floating badges -->
+        <div class="absolute -top-2 -right-2 glass glow-cyan px-3 py-2 rounded-2xl text-xs flex items-center gap-2">
+          <i class="fas fa-medal text-yellow-300"></i> Class Topper
+        </div>
+        <div class="absolute -bottom-2 -left-2 glass glow-magenta px-3 py-2 rounded-2xl text-xs flex items-center gap-2">
+          <i class="fas fa-book text-pink-300"></i> Avid Reader
+        </div>
+        <div class="absolute top-1/2 -left-10 glass glow-violet px-3 py-2 rounded-2xl text-xs flex items-center gap-2">
+          <i class="fas fa-rocket text-violet-300"></i> Future Engineer
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator"><span></span></div>
+</header>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="relative px-6 md:px-12 py-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal mb-12 text-center">
+      <span class="section-tag">About Me</span>
+      <h2 class="text-4xl md:text-5xl font-black mt-4">Who I <span class="gradient-text">Am</span></h2>
+    </div>
+
+    <div class="grid md:grid-cols-5 gap-6">
+      <div class="md:col-span-3 glass p-8 reveal tilt">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-cyan-400 flex items-center justify-center text-2xl">
+            <i class="fas fa-user-astronaut"></i>
+          </div>
+          <h3 class="text-2xl font-bold" style="font-family:'Orbitron'">Profile</h3>
+        </div>
+        <p class="text-[var(--muted)] leading-relaxed text-lg">
+          Curious learner passionate about Mathematics and Science. I love reading books and comics, exploring new ideas through educational content, and applying knowledge in real-world scenarios. I believe hard work and discipline are essential for success. I am committed to becoming a well-rounded individual and making meaningful contributions to society.
+        </p>
+      </div>
+
+      <div class="md:col-span-2 grid grid-cols-2 gap-4 reveal">
+        <div class="glass p-6 glow-cyan flex flex-col items-center justify-center text-center">
+          <i class="fas fa-school text-3xl text-cyan-300 mb-2"></i>
+          <div class="text-lg font-bold" style="font-family:'Orbitron'">AMBA</div>
+          <div class="text-xs text-[var(--muted)]">SCHOOL</div>
+        </div>
+        <div class="glass p-6 glow-violet flex flex-col items-center justify-center text-center">
+          <i class="fas fa-graduation-cap text-3xl text-violet-300 mb-2"></i>
+          <div class="text-lg font-bold" style="font-family:'Orbitron'">8TH</div>
+          <div class="text-xs text-[var(--muted)]">STANDARD</div>
+        </div>
+        <div class="glass p-6 glow-magenta flex flex-col items-center justify-center text-center">
+          <i class="fas fa-birthday-cake text-3xl text-pink-300 mb-2"></i>
+          <div class="text-lg font-bold" style="font-family:'Orbitron'">13</div>
+          <div class="text-xs text-[var(--muted)]">YEARS</div>
+        </div>
+        <div class="glass p-6 glow-gold flex flex-col items-center justify-center text-center">
+          <i class="fas fa-star text-3xl text-yellow-300 mb-2"></i>
+          <div class="text-lg font-bold" style="font-family:'Orbitron'">TOP</div>
+          <div class="text-xs text-[var(--muted)]">OF CLASS</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Traits -->
+    <div class="mt-10 reveal">
+      <div class="flex flex-wrap gap-3 justify-center">
+        <span class="chip"><i class="fas fa-fire text-orange-400"></i> Hardworking</span>
+        <span class="chip"><i class="fas fa-trophy text-yellow-400"></i> Class Topper</span>
+        <span class="chip"><i class="fas fa-book-open text-cyan-400"></i> Avid Reader</span>
+        <span class="chip"><i class="fas fa-square-root-variable text-violet-400"></i> Math & Science</span>
+        <span class="chip"><i class="fas fa-bullseye text-pink-400"></i> Goal-Oriented</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTERESTS & SKILLS ============ -->
+<section class="relative px-6 md:px-12 py-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-10">
+
+      <!-- Interests -->
+      <div class="reveal">
+        <span class="section-tag">Interests & Hobbies</span>
+        <h2 class="text-3xl md:text-4xl font-black mt-4 mb-8">Things I <span class="gradient-text">Love</span></h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div class="glass p-6 text-center tilt glow-cyan">
+            <i class="fas fa-chess text-4xl text-cyan-300 mb-3"></i>
+            <div class="font-semibold" style="font-family:'Orbitron'">Chess</div>
+          </div>
+          <div class="glass p-6 text-center tilt glow-gold">
+            <i class="fas fa-baseball-bat-ball text-4xl text-yellow-300 mb-3"></i>
+            <div class="font-semibold" style="font-family:'Orbitron'">Cricket</div>
+          </div>
+          <div class="glass p-6 text-center tilt glow-magenta">
+            <i class="fas fa-music text-4xl text-pink-300 mb-3"></i>
+            <div class="font-semibold" style="font-family:'Orbitron'">Sitar</div>
+          </div>
+          <div class="glass p-6 text-center tilt glow-violet">
+            <i class="fas fa-book text-4xl text-violet-300 mb-3"></i>
+            <div class="font-semibold" style="font-family:'Orbitron'">Reading</div>
+          </div>
+          <div class="glass p-6 text-center tilt glow-cyan">
+            <i class="fas fa-mask text-4xl text-cyan-300 mb-3"></i>
+            <div class="font-semibold" style="font-family:'Orbitron'">Comics</div>
+          </div>
+          <div class="glass p-6 text-center tilt glow-magenta">
+            <i class="fas fa-tv text-4xl text-pink-300 mb-3"></i>
+            <div class="font-semibold" style="font-family:'Orbitron'">Anime</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="reveal">
+        <span class="section-tag">Skills</span>
+        <h2 class="text-3xl md:text-4xl font-black mt-4 mb-8">My <span class="gradient-text">Arsenal</span></h2>
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span class="font-medium">Leadership</span><span class="text-[var(--muted)]">95%</span></div>
+            <div class="progress-bar" style="--p:95%"><span></span></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span class="font-medium">Communication</span><span class="text-[var(--muted)]">90%</span></div>
+            <div class="progress-bar" style="--p:90%"><span></span></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span class="font-medium">Presentation Skills</span><span class="text-[var(--muted)]">88%</span></div>
+            <div class="progress-bar" style="--p:88%"><span></span></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span class="font-medium">Problem-Solving</span><span class="text-[var(--muted)]">92%</span></div>
+            <div class="progress-bar" style="--p:92%"><span></span></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span class="font-medium">Card-Making</span><span class="text-[var(--muted)]">85%</span></div>
+            <div class="progress-bar" style="--p:85%"><span></span></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span class="font-medium">Self-Discipline & Sincerity</span><span class="text-[var(--muted)]">98%</span></div>
+            <div class="progress-bar" style="--p:98%"><span></span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEARNING JOURNEY ============ -->
+<section id="journey" class="relative px-6 md:px-12 py-24">
+  <div class="max-w-5xl mx-auto">
+    <div class="reveal mb-12 text-center">
+      <span class="section-tag">My Learning Journey</span>
+      <h2 class="text-4xl md:text-5xl font-black mt-4">Zero2Maker <span class="gradient-text">Path</span></h2>
+    </div>
+
+    <div class="glass p-8 md:p-12 reveal relative overflow-hidden">
+      <div class="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-gradient-to-br from-violet-500/30 to-cyan-400/20 blur-3xl"></div>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-8 relative z-10">
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center text-2xl mb-3"><i class="fas fa-lightbulb"></i></div>
+          <h4 class="font-bold mb-1" style="font-family:'Orbitron'">Ideation</h4>
+          <p class="text-xs text-[var(--muted)]">Generating creative ideas to solve real problems.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center text-2xl mb-3"><i class="fas fa-cube"></i></div>
+          <h4 class="font-bold mb-1" style="font-family:'Orbitron'">2D to 3D</h4>
+          <p class="text-xs text-[var(--muted)]">Length, width, and height — adding dimension to ideas.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-pink-500 to-yellow-400 flex items-center justify-center text-2xl mb-3"><i class="fas fa-laptop-code"></i></div>
+          <h4 class="font-bold mb-1" style="font-family:'Orbitron'">Tech Skills</h4>
+          <p class="text-xs text-[var(--muted)]">Making websites, writing research papers, and more.</p>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 pt-6 text-[var(--muted)] leading-relaxed text-center relative z-10">
+        I learned many things in Zero2Maker. First I learned Ideation. Ideation is the process of generating creative ideas to solve real problems. Second I learned 2D to 3D. 2D shapes have only length and width, while 3D shapes have length, width, and height. In Zero2Maker I learned many technical skills like making website, write research paper etc. and I try to make powerful skill.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects" class="relative px-6 md:px-12 py-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal mb-12 text-center">
+      <span class="section-tag">Projects</span>
+      <h2 class="text-4xl md:text-5xl font-black mt-4">Things I've <span class="gradient-text">Built</span></h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Project 1 -->
+      <div class="project-card reveal">
+        <div class="flex items-start justify-between mb-6">
+          <div class="number-badge">01</div>
+          <div class="flex gap-2">
+            <span class="chip text-xs"><i class="fas fa-utensils text-orange-400"></i> Food</span>
+            <span class="chip text-xs"><i class="fas fa-users text-cyan-400"></i> Teamwork</span>
+          </div>
+        </div>
+        <h3 class="text-2xl font-bold mb-3" style="font-family:'Orbitron'">SWAYAM-PAK L.C.</h3>
+        <p class="text-[var(--muted)] leading-relaxed mb-6">
+          In this project we will make food for all hostel student and staff. First we planning what we make in dinner in 15 minute. After planning we make food with staff and with main staff gives many challenge like no talk only sign language and sometimes instantly change staff members. In this project I faced many challenges and I developed many skills like decision making, team work etc.
+        </p>
+        <div class="flex flex-wrap gap-2 text-xs">
+          <span class="px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/30 text-cyan-300">Decision Making</span>
+          <span class="px-3 py-1 rounded-full bg-violet-400/10 border border-violet-400/30 text-violet-300">Team Work</span>
+          <span class="px-3 py-1 rounded-full bg-pink-400/10 border border-pink-400/30 text-pink-300">Sign Language</span>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card reveal">
+        <div class="flex items-start justify-between mb-6">
+          <div class="number-badge">02</div>
+          <div class="flex gap-2">
+            <span class="chip text-xs"><i class="fas fa-route text-yellow-400"></i> Outing</span>
+            <span class="chip text-xs"><i class="fas fa-clock text-pink-400"></i> Planning</span>
+          </div>
+        </div>
+        <h3 class="text-2xl font-bold mb-3" style="font-family:'Orbitron'">OUTING L.T.M.</h3>
+        <p class="text-[var(--muted)] leading-relaxed mb-6">
+          In this project we planning outing trip. After some days we execution this project. In this project our big mistake is communication gap. When staff take feedback then staff gives learning. In this project my many skill develop like time management, problem solving and crises management etc.
+        </p>
+        <div class="flex flex-wrap gap-2 text-xs">
+          <span class="px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/30 text-cyan-300">Time Management</span>
+          <span class="px-3 py-1 rounded-full bg-violet-400/10 border border-violet-400/30 text-violet-300">Problem Solving</span>
+          <span class="px-3 py-1 rounded-full bg-pink-400/10 border border-pink-400/30 text-pink-300">Crisis Management</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design Thinking -->
+    <div class="glass p-8 md:p-12 reveal mt-12 relative overflow-hidden">
+      <div class="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-gradient-to-tr from-pink-500/30 to-yellow-400/20 blur-3xl"></div>
+      <div class="flex flex-col md:flex-row gap-8 items-start relative z-10">
+        <div class="md:w-1/3">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center text-3xl mb-4">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3 class="text-2xl font-bold" style="font-family:'Orbitron'">Design Thinking &<br><span class="gradient-text">Innovation Process</span></h3>
+        </div>
+        <div class="md:w-2/3">
+          <p class="text-[var(--muted)] leading-relaxed mb-6">
+            In the Design Thinking and Innovation Process, we first understand the problem, then find people's needs, think of creative ideas, make a prototype, test it, improve it, and finally create the best solution. I think of many different ideas, share them freely, discuss them with others, and then choose the best idea to solve the problem.
+          </p>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Understand</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Empathize</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Ideate</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Prototype</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Test</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Improve</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Solve</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACHIEVEMENTS ============ -->
+<section id="achievements" class="relative px-6 md:px-12 py-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal mb-12 text-center">
+      <span class="section-tag">Achievements</span>
+      <h2 class="text-4xl md:text-5xl font-black mt-4">Moments of <span class="gradient-text">Glory</span></h2>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="achievement-card reveal text-center">
+        <div class="text-3xl mb-3"><i class="fas fa-trophy text-yellow-300"></i></div>
+        <div class="text-xs text-[var(--muted)] tracking-widest mb-1">JNV EXAM</div>
+        <div class="text-xl font-black gradient-text" style="font-family:'Orbitron'">1st Place</div>
+      </div>
+      <div class="achievement-card reveal text-center">
+        <div class="text-3xl mb-3"><i class="fas fa-award text-yellow-300"></i></div>
+        <div class="text-xs text-[var(--muted)] tracking-widest mb-1">VIKAS VARTUL</div>
+        <div class="text-xl font-black gradient-text" style="font-family:'Orbitron'">1st Place</div>
+      </div>
+      <div class="achievement-card reveal text-center">
+        <div class="text-3xl mb-3"><i class="fas fa-star text-pink-300"></i></div>
+        <div class="text-xs text-[var(--muted)] tracking-widest mb-1">ANNUAL DAY</div>
+        <div class="text-xl font-black gradient-text" style="font-family:'Orbitron'">Participant</div>
+      </div>
+      <div class="achievement-card reveal text-center">
+        <div class="text-3xl mb-3"><i class="fas fa-flag text-cyan-300"></i></div>
+        <div class="text-xs text-[var(--muted)] tracking-widest mb-1">CET</div>
+        <div class="text-xl font-black gradient-text" style="font-family:'Orbitron'">Participant</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMMUNITY IMPACT ============ -->
+<section class="relative px-6 md:px-12 py-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal mb-12 text-center">
+      <span class="section-tag">Community Impact</span>
+      <h2 class="text-4xl md:text-5xl font-black mt-4">Leading the <span class="gradient-text">Classroom</span></h2>
+    </div>
+
+    <div class="glass p-8 md:p-12 reveal">
+      <div class="grid md:grid-cols-3 gap-6 items-center">
+        <!-- Leader -->
+        <div class="text-center tilt glow-violet p-6 rounded-2xl bg-white/5">
+          <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center text-3xl mb-4">
+            <i class="fas fa-crown"></i>
+          </div>
+          <h4 class="font-bold mb-2" style="font-family:'Orbitron'">Leader</h4>
+          <p class="text-xs text-[var(--muted)]">Manages all class.</p>
+        </div>
+        <!-- Monitor -->
+        <div class="text-center tilt glow-cyan p-6 rounded-2xl bg-white/5">
+          <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center text-3xl mb-4">
+            <i class="fas fa-eye"></i>
+          </div>
+          <h4 class="font-bold mb-2" style="font-family:'Orbitron'">Class Monitor</h4>
+          <p class="text-xs text-[var(--muted)]">Keeps silence and maintains discipline.</p>
+        </div>
+        <!-- Departments -->
+        <div class="text-center tilt glow-gold p-6 rounded-2xl bg-white/5">
+          <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-yellow-400 to-pink-500 flex items-center justify-center text-3xl mb-4">
+            <i class="fas fa-layer-group"></i>
+          </div>
+          <h4 class="font-bold mb-2" style="font-family:'Orbitron'">Departments</h4>
+          <p class="text-xs text-[var(--muted)]">Softboard, cupboard & more — many students work.</p>
+        </div>
+      </div>
+      <div class="border-t border-white/10 mt-8 pt-6 text-[var(--muted)] text-center leading-relaxed">
+        In classroom I start new ideas. In this ideas first is leader. Leader manages all class. Second is class monitor. Monitor keeps silence and maintains discipline. Under the leader many departments like softboard, cupboard etc. In the department many student work.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FUTURE GOALS ============ -->
+<section class="relative px-6 md:px-12 py-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal mb-12 text-center">
+      <span class="section-tag">Future Goals</span>
+      <h2 class="text-4xl md:text-5xl font-black mt-4">The <span class="gradient-text">Mission Ahead</span></h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass p-8 reveal tilt glow-violet text-center">
+        <div class="text-4xl mb-4"><i class="fas fa-robot gradient-text"></i></div>
+        <h4 class="font-bold mb-2" style="font-family:'Orbitron'">Robots</h4>
+        <p class="text-sm text-[var(--muted)]">Build technology that solves real-world problems.</p>
+      </div>
+      <div class="glass p-8 reveal tilt glow-cyan text-center">
+        <div class="text-4xl mb-4"><i class="fas fa-microchip gradient-text"></i></div>
+        <h4 class="font-bold mb-2" style="font-family:'Orbitron'">Smart Devices</h4>
+        <p class="text-sm text-[var(--muted)]">Make people's lives better through innovation.</p>
+      </div>
+      <div class="glass p-8 reveal tilt glow-magenta text-center">
+        <div class="text-4xl mb-4"><i class="fas fa-brain gradient-text"></i></div>
+        <h4 class="font-bold mb-2" style="font-family:'Orbitron'">AI Systems</h4>
+        <p class="text-sm text-[var(--muted)]">Help society and inspire students to become makers.</p>
+      </div>
+    </div>
+
+    <div class="glass p-8 md:p-10 reveal mt-8 text-center">
+      <p class="text-[var(--muted)] leading-relaxed max-w-3xl mx-auto mb-6">
+        I want to become an engineer and innovator who builds technology that solves real-world problems and makes people's lives better. I want to create robots, smart devices, and AI systems that help society and inspire other students to become makers and inventors. And I want to learn skills like public speaking, presentation skills, teamwork, leadership, problem-solving and critical thinking etc.
+      </p>
+      <div class="flex flex-wrap gap-2 justify-center">
+        <span class="chip text-xs"><i class="fas fa-microphone text-cyan-300"></i> Public Speaking</span>
+        <span class="chip text-xs"><i class="fas fa-display text-violet-300"></i> Presentation</span>
+        <span class="chip text-xs"><i class="fas fa-users text-pink-300"></i> Teamwork</span>
+        <span class="chip text-xs"><i class="fas fa-chess-king text-yellow-300"></i> Leadership</span>
+        <span class="chip text-xs"><i class="fas fa-puzzle-piece text-cyan-300"></i> Problem-Solving</span>
+        <span class="chip text-xs"><i class="fas fa-lightbulb text-violet-300"></i> Critical Thinking</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="relative px-6 md:px-12 py-24 footer-grid-bg">
+  <div class="max-w-5xl mx-auto">
+    <div class="reveal mb-12 text-center">
+      <span class="section-tag">My Contact</span>
+      <h2 class="text-4xl md:text-5xl font-black mt-4">Let's <span class="gradient-text">Connect</span></h2>
+      <p class="text-[var(--muted)] mt-4">Please visit my site · Reach out anytime.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <a href="mailto:aniketkc110@gmail.com" class="glass p-8 reveal tilt glow-cyan flex items-center gap-5 group">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center text-2xl">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div>
+          <div class="text-xs text-[var(--muted)] tracking-widest mb-1">EMAIL</div>
+          <div class="font-semibold text-lg group-hover:text-cyan-300 transition">aniketkc110@gmail.com</div>
+        </div>
+        <i class="fas fa-arrow-right ml-auto text-[var(--muted)] group-hover:text-cyan-300 group-hover:translate-x-1 transition"></i>
+      </a>
+
+      <a href="tel:+919925641188" class="glass p-8 reveal tilt glow-magenta flex items-center gap-5 group">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500 to-violet-500 flex items-center justify-center text-2xl">
+          <i class="fas fa-phone"></i>
+        </div>
+        <div>
+          <div class="text-xs text-[var(--muted)] tracking-widest mb-1">PHONE</div>
+          <div class="font-semibold text-lg">+91 9925641188</div>
+          <div class="text-sm text-[var(--muted)]">+91 9727825424</div>
+        </div>
+        <i class="fas fa-arrow-right ml-auto text-[var(--muted)] group-hover:text-pink-300 group-hover:translate-x-1 transition"></i>
+      </a>
+    </div>
+
+    <div class="reveal mt-12 text-center">
+      <a href="mailto:aniketkc110@gmail.com" class="btn-cosmic"><span>Start a Conversation</span><i class="fas fa-rocket"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="relative px-6 md:px-12 py-10 border-t border-white/10 text-center">
+  <div class="flex items-center justify-center gap-3 mb-3">
+    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 via-cyan-400 to-pink-500 flex items-center justify-center font-black text-black" style="font-family:'Orbitron'">A</div>
+    <span class="font-semibold tracking-wider text-sm" style="font-family:'Orbitron'">ANIKET CHAUDHARI</span>
+  </div>
+  <p class="text-xs text-[var(--muted)] tracking-widest">STUDENT · LEARNER · DEVELOPER · AMBA SCHOOL · 8TH STANDARD</p>
+</footer>
+
+<script>
+/* ===== Starfield ===== */
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+let stars = [], shootingStars = [];
+function resize(){
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+  stars = Array.from({length:Math.min(260, innerWidth/5)}, ()=>({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*1.4 + 0.2,
+    a:Math.random(),
+    s:Math.random()*0.02 + 0.005,
+    c:['#ffffff','#00e5ff','#ff2bd6','#7b2fff'][Math.floor(Math.random()*4)]
+  }));
+}
+resize();
+addEventListener('resize', resize);
+
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  // stars
+  stars.forEach(st=>{
+    st.a += st.s;
+    const alpha = (Math.sin(st.a)+1)/2 * 0.9 + 0.1;
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = st.c;
+    ctx.beginPath();
+    ctx.arc(st.x, st.y, st.r, 0, Math.PI*2);
+    ctx.fill();
+  });
+  // shooting stars
+  if(Math.random() < 0.005){
+    shootingStars.push({
+      x:Math.random()*canvas.width,
+      y:Math.random()*canvas.height*0.5,
+      vx:6 + Math.random()*4,
+      vy:2 + Math.random()*2,
+      life:1
+    });
+  }
+  shootingStars = shootingStars.filter(ss=>{
+    ctx.globalAlpha = ss.life;
+    const grad = ctx.createLinearGradient(ss.x, ss.y, ss.x - ss.vx*8, ss.y - ss.vy*8);
+    grad.addColorStop(0, 'rgba(255,255,255,1)');
+    grad.addColorStop(1, 'rgba(0,229,255,0)');
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(ss.x, ss.y);
+    ctx.lineTo(ss.x - ss.vx*8, ss.y - ss.vy*8);
+    ctx.stroke();
+    ss.x += ss.vx; ss.y += ss.vy; ss.life -= 0.015;
+    return ss.life > 0;
+  });
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(draw);
+}
+draw();
+
+/* ===== Custom Cursor ===== */
+const dot = document.querySelector('.cursor-dot');
+const ring = document.querySelector('.cursor-ring');
+let mx=0,my=0, rx=0,ry=0;
+addEventListener('mousemove', e=>{
+  mx=e.clientX; my=e.clientY;
+  dot.style.left = mx+'px';
+  dot.style.top  = my+'px';
+});
+function loop(){
+  rx += (mx-rx)*0.18;
+  ry += (my-ry)*0.18;
+  ring.style.left = rx+'px';
+  ring.style.top  = ry+'px';
+  requestAnimationFrame(loop);
+}
+loop();
+document.querySelectorAll('a, button, .tilt, .chip, .project-card, .achievement-card').forEach(el=>{
+  el.addEventListener('mouseenter', ()=> ring.classList.add('hover'));
+  el.addEventListener('mouseleave', ()=> ring.classList.remove('hover'));
+});
+
+/* ===== Reveal on scroll ===== */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      en.target.classList.add('in');
+      io.unobserve(en.target);
+    }
+  });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+/* ===== Smooth nav highlight (optional subtle) ===== */
+const sections = ['about','journey','projects','achievements','contact']
+  .map(id=>document.getElementById(id));
+const navLinks = document.querySelectorAll('.nav-link');
+addEventListener('scroll', ()=>{
+  const y = scrollY + innerHeight*0.35;
+  let active = null;
+  sections.forEach(s=>{ if(s && s.offsetTop <= y) active = s.id; });
+  navLinks.forEach(l=>{
+    l.style.color = l.getAttribute('href') === '#'+active ? '#fff' : '';
+  });
+});
+</script>
 </body>
 </html>
